@@ -1,3 +1,6 @@
 # http://www.robotstxt.org
 User-agent: *
 Disallow:
+
+Sitemap: /game/sitemap.xml
+Sitemap: /game/sitemap.xml
