@@ -1,0 +1,47 @@
+      <div class="char-card">
+	<div>
+	  <div class="card-image-wrap">
+		<CharIcon @char={{this.char}} />
+
+		{{#if this.char.id}}
+		<LinkTo @route="char" @model={{this.char.name}} target="_blank">View Full Profile</LinkTo>
+		{{/if}}
+		
+	  </div>  
+	  <div class="card-profile-wrap">
+		{{#if (not this.char.is_ooc)}}
+		  {{#each this.char.demographics as |demo|}}
+		  <div>
+			  <div class="category">
+				<b>{{demo.name}}</b> 
+			  </div>
+			  <div class="data">
+				{{demo.value}}
+			  </div>
+		  </div>
+		  {{/each}}
+		  {{#if (not this.char.demographics)}}
+		  No demographics available.  Try reloading the scene page.
+		  {{/if}}
+		{{/if}}
+		
+		{{#if this.char.status_message}}
+		<br>
+		<div class="alert alert-info">
+		  {{this.char.status_message}}
+		</div>
+		{{/if}}
+		
+		
+	  </div>
+	</div>
+		
+	<div class="row">
+	  <div class="col col-xs-12">
+		{{#if this.char.description}}
+		<AnsiFormat @text={{this.char.description}} />
+		{{/if}}
+		
+	  </div>
+	</div>
+      </div>
