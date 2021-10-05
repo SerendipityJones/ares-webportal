@@ -4,4 +4,6 @@ export default function setupCustomRoutes(router) {
   // router.route('yourroute');
   
   router.route('inspiration');
+  router.route('spells');
+  router.route('spell', { path: '/spell/:spellname' } );
 }
