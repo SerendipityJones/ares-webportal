@@ -19,7 +19,7 @@
     {{#each this.model.census.chars as |char| }}
     <tr>
       {{#each-in char as |field value| }}  
-        {{#unless (eq @index 2}}
+        {{#unless (eq @index 2)}
           <td>
             {{#if (eq field 'char')}}
               <CharIconInline @char={{value}} />
