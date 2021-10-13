@@ -8,10 +8,8 @@
 <table class="table table-striped census">
   <thead>
       <th></th>
-      {{#each this.model.census.titles as |title|}}	  
-        {{#unless (is-equal @number 2)}}
-          <th>{{title}}</th>		  
-        {{/unless}}
+      {{#each this.model.census.titles as |title|}}	
+        <th>{{title}}</th>
       {{/each}}
   </thead>
   
@@ -19,15 +17,13 @@
     {{#each this.model.census.chars as |char| }}
     <tr>
       {{#each-in char as |field value| }}  
-        {{#unless (is-equal @number 2)}}
-          <td>
-            {{#if (eq field 'char')}}
-              <CharIconInline @char={{value}} />
-            {{else}}
-              {{value}}
-            {{/if}}
-          </td>	  
-        {{/unless}}
+        <td>
+          {{#if (eq field 'char')}}
+            <CharIconInline @char={{value}} />
+          {{else}}
+            {{value}}
+          {{/if}}
+        </td>	  
       {{/each-in}}
     </tr>
     {{/each}}
