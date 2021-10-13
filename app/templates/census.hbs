@@ -9,10 +9,9 @@
   <thead>
       <th></th>
       {{#each this.model.census.titles as |title|}}	  
-        {{#if @first}}
-		{{else}}
+        {{#unless (eq @index 2)}}
           <th>{{title}}</th>		  
-        {{/if}}
+        {{/unless}}
       {{/each}}
   </thead>
   
@@ -20,8 +19,7 @@
     {{#each this.model.census.chars as |char| }}
     <tr>
       {{#each-in char as |field value| }}  
-        {{#if @first}}
-		{{else}}
+        {{#unless (eq @index 2}}
           <td>
             {{#if (eq field 'char')}}
               <CharIconInline @char={{value}} />
@@ -29,7 +27,7 @@
               {{value}}
             {{/if}}
           </td>	  
-        {{/if}}
+        {{/unless}}
       {{/each-in}}
     </tr>
     {{/each}}
