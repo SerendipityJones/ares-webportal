@@ -1,0 +1,30 @@
+{{page-title 'Keys'}}
+<h1>Keys</h1>
+<div class="keys">
+	<div class="key-categories">
+	<h3>Colours</h3>
+	  {{#each this.model.colours as |colour|}}
+		<label><Input @type="checkbox" name="colour"  id={{colour}} @value={{colour}} @checked={{this.id.isChecked}} @click={{action "clickBox"}} /><span> {{colour}}</span></label><br/>
+	  {{/each}}
+	<h3>Materials</h3>
+	  {{#each this.model.materials as |material|}}
+		<label><Input @type="checkbox" name="material" id="{{material}}" @value="{{material}}" @checked={{this.id.isChecked}} @click={{action "clickBox"}} /><span> {{material}}</span></label><br/>
+	  {{/each}}
+	<h3>Motifs</h3>
+	  {{#each this.model.motifs as |motif|}}
+		<label><Input @type="checkbox" name="motif" id="{{motif}}" @value="{{motif}}" @checked={{this.id.isChecked}} @click={{action "clickBox"}} /><span> {{motif}}</span></label><br/>
+	  {{/each}}
+	<h3>Styles</h3>
+	  {{#each this.model.styles as |style|}}
+		<label><Input @type="checkbox" name="style" id="{{style}}" @value="{{style}}" @checked={{this.id.isChecked}} @click={{action "clickBox"}} /><span> {{style}}</span></label><br/>
+	  {{/each}}
+	</div>
+	<div class="key-gallery thumbnail-gallery">
+	  {{#each-in this.model.keys as |keyname data|}}
+		<div class="thumbnail-gallery-item" data-colour="{{spaces data.colour}}" data-material="{{spaces data.material}}" data-motif="{{spaces data.motif}}" data-style="{{spaces data.style}}">
+			<a href="/file/keypix/{{keyname}}.jpg"><img src="/game/uploads/keypix/{{keyname}}.jpg" class="thumbnail" /><span>{{substring keyname start=3 end=7}}</span></a>
+		</div>
+	  {{/each-in}}
+	</div>
+</div>
+{{outlet}}
