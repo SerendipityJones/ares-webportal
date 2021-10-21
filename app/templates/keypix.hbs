@@ -2,6 +2,7 @@
 <h1>Keys</h1>
 <div class="keys">
 	<div class="key-categories">
+	<button {{action "clearBoxes"}}>Clear All</button>
 	<h3>Colours</h3>
 	  {{#each this.model.colours as |colour|}}
 		<label><Input @type="checkbox" name="colour"  id={{colour}} @value={{colour}} @checked={{this.id.isChecked}} @click={{action "clickBox"}} /><span> {{colour}}</span></label><br/>

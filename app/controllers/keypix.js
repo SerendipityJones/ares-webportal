@@ -37,7 +37,7 @@ export default Controller.extend({
 
   actions: {
 
-    clickBox() {
+    clickBox: function() {
       const dataTypes = ["colour","material","motif","style"];
       const chosenType = {};
       var gatherChosen = 0
@@ -51,7 +51,7 @@ export default Controller.extend({
           }
         });
         gatherChosen += chosenType[dataType].length;
-        console.log(chosenType[dataType]);
+        //console.log(chosenType[dataType]);
       });
       if (gatherChosen) {
         var currentPics = new Array();
@@ -89,6 +89,18 @@ export default Controller.extend({
           self.removeClass(item, "hidekey");
         });
       }
+    },
+
+    clearBoxes: function() {
+      var checkBoxes = document.querySelectorAll(".key-categories input");
+      checkBoxes.forEach((item, i) => {
+        if (item.checked){
+          item.checked = false;
+        }
+      });
+      document.querySelectorAll(".key-gallery .thumbnail-gallery-item").forEach((item, i) => {
+        this.removeClass(item, "hidekey");
+      });
     }
   }
 });
