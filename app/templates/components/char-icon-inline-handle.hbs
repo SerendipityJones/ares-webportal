@@ -6,24 +6,26 @@
         <CharIconStatusBase @char={{this.char}} @iconClass="small-profile-icon" />
     </LinkTo>
   {{/if}}
-
-  {{#if this.hideLink}}
-    {{#if this.char.nick}}
-      {{this.char.nick}}
-    {{else}}
-      {{this.char.name}}
-    {{/if}}
-  {{else}}
-    <LinkTo @route="char" @model={{this.char.name}}>
+  <span class="charname">
+    {{#if this.hideLink}}
       {{#if this.char.nick}}
         {{this.char.nick}}
       {{else}}
         {{this.char.name}}
       {{/if}}
-    </LinkTo>
-  {{/if}}
+    {{else}}
+      <LinkTo @route="char" @model={{this.char.name}}>
+        {{#if this.char.nick}}
+          {{this.char.nick}}
+        {{else}}
+          {{this.char.name}}
+        {{/if}}
+      </LinkTo>
+    {{/if}}
+    {{#if this.char.muted}}<i class="fa fa-microphone-slash"></i>{{/if}}
+  </span>
   {{#if (spaced this.char.ooc_name)}}
-    <span>
+    <span class="charhandle">
       {{last this.char.ooc_name}}
     </span>
   {{/if}}

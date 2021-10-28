@@ -27,12 +27,11 @@
         {{/if}}
 
         <p><b>Who's On</b></p>
-
-      {{#each this.channel.who as |who|}}
-        <CharIconInlineHandle @char={{who}} />
-        {{#if who.muted}}<i class="fa fa-microphone-slash"></i>{{/if}}
-
-      {{/each}}
+        <div class="who-icons">
+          {{#each this.channel.who as |who|}}
+            <CharIconInlineHandle @char={{who}} />
+          {{/each}}
+        </div>
       </div>
 
       <div class="clearfix"></div>
