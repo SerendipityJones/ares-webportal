@@ -6,14 +6,14 @@
       {{#if this.char.id}}
         <LinkTo @route="char" @model={{this.char.name}} target="_blank">View Full Profile</LinkTo>
       {{/if}}
-    
-    </div>  
+
+    </div>
     <div class="col col-8">
       {{#if (not this.char.is_ooc)}}
         {{#each this.char.demographics as |demo|}}
           <div class="row">
             <div class="col col-xs-3">
-              <b>{{demo.name}}</b> 
+              <b>{{demo.name}}</b>
             </div>
             <div class="col col-xs-9">
               {{demo.value}}
@@ -24,18 +24,18 @@
           No demographics available.  Try reloading the scene page.
         {{/if}}
       {{/if}}
-    
+
       {{#if this.char.status_message}}
         <div class="alert alert-info">
           {{this.char.status_message}}
         </div>
       {{/if}}
-       
+
     </div>
   </div>
 
 {{#if (not this.char.is_ooc)}}
-  <hr>    
+  <hr>
 
   <ul class="nav nav-tabs" role="tablist">
     {{#if this.char.description}}
@@ -90,11 +90,11 @@
             </div>
           {{/each}}
         </div>
- 
+
         <div class="card-abilities">
           {{#each this.char.fs3.languages as |ability|}}
             <div class="card-ability">
-              <span class="card-ability-name">{{ability.name}}</span>
+              <span class="card-ability-name lang-{{ability.name}}">{{ability.name}}</span>
               <Fs3Dots @rating={{ability.rating}} @max={{3}} />
             </div>
           {{/each}}
@@ -114,5 +114,5 @@
       </div>
     {{/if}}
   </div>
-{{/if}}  
+{{/if}}
 </div>
