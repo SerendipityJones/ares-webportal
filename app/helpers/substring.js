@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-function substring([string], { start, end }) {
+export function substring([string], { start, end }) {
   return string.substring(start || 0, end);
 }
 

@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-function spaces([string]) {
+export function spaces([string]) {
   return string.toString().split(',').join(' ');
 }
 

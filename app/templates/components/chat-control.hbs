@@ -50,7 +50,7 @@
  {{/if}}
 
 
- <div id="chat-window">
+ <div id="chat-window" class="{{if showHandles 'handles'}}">
  {{#each this.channel.messages as |message|}}
    <div class="hint float-end">
          <div class="timestamp-tip">{{message.timestamp}}</div>

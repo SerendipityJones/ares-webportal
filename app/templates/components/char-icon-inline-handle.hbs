@@ -7,24 +7,24 @@
     </LinkTo>
   {{/if}}
 
-{{#if this.hideLink}}
-  {{#if this.char.nick}}
-    {{this.char.nick}}
-  {{else}}
-    {{this.char.name}}
-  {{/if}}
-{{else}}
-  <LinkTo @route="char" @model={{this.char.name}}>
+  {{#if this.hideLink}}
     {{#if this.char.nick}}
       {{this.char.nick}}
     {{else}}
       {{this.char.name}}
     {{/if}}
-  </LinkTo>
-{{/if}}
-  <span>
-    {{#if this.char.handle}}
-      {{this.char.handle}}
-    {{/if}}
-  </span>
+  {{else}}
+    <LinkTo @route="char" @model={{this.char.name}}>
+      {{#if this.char.nick}}
+        {{this.char.nick}}
+      {{else}}
+        {{this.char.name}}
+      {{/if}}
+    </LinkTo>
+  {{/if}}
+  {{#if (spaced this.char.ooc_name)}}
+    <span>
+      {{last this.char.ooc_name}}
+    </span>
+  {{/if}}
 </span>
