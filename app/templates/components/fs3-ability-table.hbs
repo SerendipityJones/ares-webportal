@@ -3,11 +3,7 @@
   <table class="char-ability-list">
   {{#each this.list as |ability| }}
   <tr>
-    <td>{{#if (eq this.title 'Languages')}}
-        <span class="lang-{{ability.name}}">{{ability.name}}</span>
-      {{else}}
-        {{ability.name}}
-      {{/if}}
+    <td>{{ability.name}}
       {{#if ability.linked_attr}}
       <span class="fs3-linked-attr">({{ability.linked_attr}})</span>
       {{/if}}
