@@ -1,0 +1,38 @@
+{{page-title "Magic"}}
+<h1>Magic</h1>
+
+<div class="row wiki-breadcrumbs">
+    <div class="col col-xs-10">
+      <span class="wiki-breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-angle-double-right" aria-hidden="true"></i>
+        Magic
+      </span>
+    </div>
+
+    <div class="col col-xs-2">
+        <a href="#bottom"><i class="fas fa-angle-double-down" aria-hidden="true"></i> Jump to End</a>
+    </div>
+</div>
+<div class="toc"><h4>Table of Contents</h4><ul><li><a href="#do-i-have-to-choose-spells-right-away">Do I Have To Choose Spells Right Away?</a></li><li><a href="#the-skills">The Skills</a></li><ul><li><a href="#chaos">Chaos</a></li><li><a href="#elemental">Elemental</a></li><li><a href="#heart">Heart</a></li><li><a href="#law">Law</a></li><li><a href="#life">Life</a></li><li><a href="#sight">Sight</a></li></ul><li><a href="#spellcasting-methods">Spellcasting Methods</a></li><li><a href="#spellcasting-failures">Spellcasting Failures</a></li></ul></div>
+
+<div class="magic"><AnsiFormat @text={{this.model.magic.text.before}} />
+
+<div class="spell-list">
+  {{#each this.model.spells.categories as |category|}}
+    <a name="{{pagecase category.name}}"></a><h3 class="spellheader-{{category.name}}">{{category.name}}</h3>
+    <p>{{category.desc}} The ruling Attribute for {{category.name}} is {{category.attribute}}.</p>
+    <ul>
+      {{#each category.spells as |spell|}}
+        <li><a href="/spell/{{pagecase spell}}">{{spell}}</a>: {{#each-in this.model.spells.spells as |sname sdata|}}{{if (eq spell sname) sdata.desc.short}}{{/each-in}}</li>
+      {{/each}}
+    </ul>
+  {{/each}}
+</div>
+
+<AnsiFormat @text={{this.model.magic.text.after}} /></div>
+
+<div class="action-buttons">
+  <a name="bottom"></a>
+  <p><a href="#top"><i class="fas fa-angle-double-up"></i> Jump to Top</a></p>
+</div>

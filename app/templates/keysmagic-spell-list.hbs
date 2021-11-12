@@ -1,0 +1,32 @@
+{{page-title "Spell List"}}
+<h1>Spell List</h1>
+
+<div class="row wiki-breadcrumbs">
+    <div class="col col-xs-10">
+      <span class="wiki-breadcrumb">
+        <a href="/">Home</a>
+        <i class="fas fa-angle-double-right" aria-hidden="true"></i>
+        <a href="/magic">Magic</a>
+        <i class="fas fa-angle-double-right" aria-hidden="true"></i>
+        Spell List
+      </span>
+    </div>
+
+    <div class="col col-xs-2">
+        <a href="#bottom"><i class="fas fa-angle-double-down" aria-hidden="true"></i> Jump to End</a>
+    </div>
+</div>
+
+<p>All the spells, in alphabetical order.</p>
+<div class="spell-list">
+  <ul>
+    {{#each-in this.model.spells as |spell data|}}
+      <li><a href="/spell/{{pagecase spell}}">{{spell}}</a>: {{data.desc.short}}</li>
+    {{/each-in}}
+  </ul>
+</div>
+
+<div class="action-buttons">
+  <a name="bottom"></a>
+  <p><a href="#top"><i class="fas fa-angle-double-up"></i> Jump to Top</a></p>
+</div>

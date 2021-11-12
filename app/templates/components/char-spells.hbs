@@ -1,0 +1,19 @@
+  <div class="spell-list">
+    {{#each-in this.spells as |cat spelllist|}}
+      <h3 class="spellheader-{{cat}}">{{cat}}</h3>
+      {{#each-in spelllist as |spell data|}}
+        <div class="spell-known">
+          <a href="/spell/{{pagecase spell}}" target="_blank">{{spell}}:</a>
+          <div class="spell-data">
+            <span class="spell-roll">{{data.roll}}</span>            
+            {{#if data.fs3}}
+              <span class="spell-fs3">{{data.fs3}}</span>
+            {{/if}}
+            {{#if data.offense}}
+              <span class="spell-vs">{{data.offense}} vs {{data.defense}}</span>
+            {{/if}}
+          </div>
+        </div>
+      {{/each-in}}
+    {{/each-in}}
+  </div>

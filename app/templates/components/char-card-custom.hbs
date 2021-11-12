@@ -35,7 +35,6 @@
   </div>
 
 {{#if (not this.char.is_ooc)}}
-  <hr>
 
   <ul class="nav nav-tabs" role="tablist">
     {{#if this.char.description}}
@@ -44,6 +43,10 @@
 
     {{#if this.char.fs3}}
       <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#stats">Stats</a></li>
+    {{/if}}
+
+    {{#if this.char.custom.spells}}
+      <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#spells">Spells</a></li>
     {{/if}}
   </ul>
 
@@ -56,6 +59,7 @@
 
     {{#if this.char.fs3}}
       <div id="stats" class="tab-pane fade show">
+
         <div class="card-abilities">
           {{#each this.char.fs3.attributes as |ability|}}
             <div class="card-ability">
@@ -110,6 +114,14 @@
             {{/each}}
           </div>
         {{/if}}
+
+      </div>
+    {{/if}}
+
+    {{#if this.char.custom.spells}}
+      <div id="spells" class="tab-pane fade show">
+
+        <CharSpells @spells={{this.char.custom.spells}} />
 
       </div>
     {{/if}}
