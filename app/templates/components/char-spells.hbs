@@ -5,12 +5,15 @@
         <div class="spell-known">
           <a href="/spell/{{pagecase spell}}" target="_blank">{{spell}}:</a>
           <div class="spell-data">
-            <span class="spell-roll">{{data.roll}}</span>            
+            <span class="spell-roll">{{data.roll}}</span>
             {{#if data.fs3}}
               <span class="spell-fs3">{{data.fs3}}</span>
             {{/if}}
             {{#if data.offense}}
               <span class="spell-vs">{{data.offense}} vs {{data.defense}}</span>
+            {{/if}}
+            {{#if data.special}}
+              <span class="spell-special">{{data.special}}</span>
             {{/if}}
           </div>
         </div>
