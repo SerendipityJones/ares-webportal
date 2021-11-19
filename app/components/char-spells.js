@@ -20,5 +20,10 @@ export default Component.extend({
       }
       this.spells.Life.Heal.special = this.spells.Life.Heal.special.replace("one time per Life dot",times);
     }
+    if (this.spells.Chaos && this.spells['Chaos']['Key Maker']) {
+      this.spells['Chaos']['Key Maker']['special'] = this.spells['Chaos']['Key Maker']['special'].replace(/^(.+); (.+)$/,"<span> $1;</span> <span>$2</span>" );
+    } else if (this.spells.Law && this.spells['Law']['Key Maker']) {
+      this.spells['Law']['Key Maker']['special'] = this.spells['Law']['Key Maker']['special'].replace(/^(.+); (.+)$/,"<span> $1;</span> <span>$2</span>" );
+    }
   }
 });
