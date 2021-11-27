@@ -1,6 +1,13 @@
 import Component from '@ember/component';
+import EmberObject, { computed } from '@ember/object';
 
 export default Component.extend({
+
+  sortedSpells: computed( 'spells', function() {
+    const sortObject = obj => Object.keys(obj).sort().reduce((res, key) => (res[key] = obj[key], res), {});
+    return sortObject(this.get('spells'));
+  }),
+
   didReceiveAttrs: function () {
     if (this.spells.Life && this.spells.Life.Heal && this.spells.Life.Heal.special) {
       var cap = this.skills.find(({ name }) => name === 'Life').rating;
@@ -22,8 +29,16 @@ export default Component.extend({
     }
     if (this.spells.Chaos && this.spells['Chaos']['Key Maker']) {
       this.spells['Chaos']['Key Maker']['special'] = this.spells['Chaos']['Key Maker']['special'].replace(/^(.+); (.+)$/,"<span> $1;</span> <span>$2</span>" );
-    } else if (this.spells.Law && this.spells['Law']['Key Maker']) {
+    }
+    if (this.spells.Law && this.spells['Law']['Key Maker']) {
       this.spells['Law']['Key Maker']['special'] = this.spells['Law']['Key Maker']['special'].replace(/^(.+); (.+)$/,"<span> $1;</span> <span>$2</span>" );
     }
+    if (this.spells.Heart && this.spells.Heart.Telepathy) {
+
+    }
+    if (this.spells.Heart && this.spells.Heart.Familiar){
+
+    }
+
   }
 });

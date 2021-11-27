@@ -1,5 +1,5 @@
   <div class="spell-list">
-    {{#each-in this.spells as |cat spelllist|}}
+    {{#each-in this.sortedSpells as |cat spelllist|}}
       <h3 class="spellheader-{{cat}}">{{cat}}</h3>
       {{#each-in spelllist as |spell data|}}
         <div class="spell-known">
