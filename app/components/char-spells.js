@@ -5,7 +5,9 @@ export default Component.extend({
 
   sortedSpells: computed( 'spells', function() {
     const sortObject = obj => Object.keys(obj).sort().reduce((res, key) => (res[key] = obj[key], res), {});
-    return sortObject(this.get('spells'));
+    var sortingList = sortObject(this.get('spells'));
+    Object.entries(sortingList).forEach(([cat, list]) => sortingList[cat] = sortObject(list));
+    return sortingList;
   }),
 
   didReceiveAttrs: function () {
