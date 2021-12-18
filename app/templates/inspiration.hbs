@@ -4,14 +4,14 @@
 <p>No idea for where and when to set a scene when characters hop through a Portal or use a Key of which the destination is unknown? Look no further. This generator tries to suggest a combination of location and activity for using a Key or Portal with an unknown destination.</p>
 <p>Not every suggestion is going to make sense in combination; you probably will not find a red carpet opera premiere on board a B52 bomber plane over Hamburg in '43. Pick the bits that inspire you and ignore the rest!</p>
 
-<blockquote>
-  <p>Your destination could be {{this.model.location}}</p>
-  <p>{{this.model.action}}</p>
-  <p>An involved item or trinket could be {{this.model.thing}}. Consider using a theme of {{this.model.cue}}</p>
+<blockquote class="inspirationbox">
+  <p>Your destination could be <AnsiFormat @text={{this.model.newLocation}} /></p>
+  <p><AnsiFormat @text={{this.model.newAction}} /></p>
+  <p>An involved item or trinket could be <AnsiFormat @text={{~this.model.newThing~}} /> Consider using a theme of <AnsiFormat @text={{this.model.newCue}} /></p>
 </blockquote>
-<p>
-  <i>Refresh the page for a new prompt.</i>
-</p>
+<BsButton @type="primary" class="inspiration" {{action "newInspiration"}}>
+  Inspire Me Again!
+</BsButton>
 
 <h2>Other inspiration</h2>
 <ul>
