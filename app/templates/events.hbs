@@ -3,6 +3,14 @@
 
 <p>The events calendar helps you schedule scenes with other players.  Events you've signed up for are indicated with a <i class="fas fa-calendar-check" aria-label="Signed Up"></i> icon.</p>
 
+{{#if this.model.calendar_image}}
+  <div class="calendar-page">
+    <div class="month">{{this.model.month_name}}</div>
+    <img src="{{this.model.calendar_image}}" alt="{{this.model.char_full_name}}, {{this.model.month_name}}" />
+    <div class="entry-label"><a href="/char/{{this.model.char_name}}">{{this.model.char_full_name}}</a></div>
+  </div>
+{{/if}}
+
 <div class="action-buttons">
   {{#if isApproved}}
       <LinkTo @route="event-create" class="btn btn-primary">Create Event</LinkTo>
@@ -18,8 +26,8 @@
       <th>Date/Time</th>
       <th>Tags</th>
 </thead>
-       
-<tbody> 
+
+<tbody>
   {{#each this.model.events as |event|}}
   <tr>
     <td>
@@ -33,20 +41,20 @@
           <ContentWarningTag @warning={{event.content_warning}} @position="top-right" />
           {{/if}}
       </td>
-    
+
       <td>
           <CharIconTiny @char={{event.organizer}} />
       </td>
       <td>
           {{event.start_datetime_local}}
           <br>({{event.start_time_standard}})
-      </td>      
+      </td>
       <td>
         {{#each event.tags as |tag|}}
         <LinkTo @route="wiki-tag" @model={{tag}}>{{tag}}</LinkTo>
         {{/each}}
       </td>
-    
+
   </tr>
 
   {{/each}}
