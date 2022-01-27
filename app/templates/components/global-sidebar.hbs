@@ -48,7 +48,7 @@
   <i class="fas fa-calendar-check" aria-label="Signed Up"></i>
   {{/if}}
   <b><LinkTo @route="event" @model={{event.id}}>
-      
+
     {{event.title}}
 
     </LinkTo></b>
@@ -76,7 +76,9 @@
        <ContentWarningTag @warning={{scene.content_warning}} @position="top-left" />
        {{/if}}
        <SceneTypeTag @scene={{scene}} />
-       <br></p>
+       <br>
+       <AnsiFormat @text={{ellipsize scene.summary limit=120}} />
+       </p>
    {{/each}}
    <br>
    <p><LinkTo @route="scenes">All Scenes</LinkTo></p>
