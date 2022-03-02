@@ -57,7 +57,6 @@
     {{/if}}
   <br>{{event.date}} {{event.start_datetime_local}} ({{event.start_time_standard}})</p>
   {{/each}}
-   <br>
   <p><LinkTo @route="events">All Events</LinkTo></p>
 
 </div>
@@ -80,7 +79,6 @@
        <AnsiFormat @text={{ellipsize scene.summary limit=120}} />
        </p>
    {{/each}}
-   <br>
    <p><LinkTo @route="scenes">All Scenes</LinkTo></p>
 </div>
 
@@ -99,7 +97,6 @@
           <LinkTo @route="forum-topic" @models={{array post.category_id post.id}}>{{post.subject}}.</LinkTo>
    </p>
    {{/each}}
-   <br>
    <p><LinkTo @route="forum">View Forum</LinkTo></p>
 </div>
 
@@ -114,7 +111,6 @@
    </p>
    {{/each}}
 
-   <br>
    <p><LinkTo @route="recent-changes">More Changes</LinkTo></p>
 
 </div>
