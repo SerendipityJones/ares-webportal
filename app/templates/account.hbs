@@ -132,7 +132,11 @@
 
                 <div class="card-body">
 
-                  Unified Play Enabled <Input @type="checkbox" @checked={{this.model.unified_play_screen}} />
+                  <div class="alert alert-info">
+                    Note: This setting applies to all alts on this game.
+                  </div>
+
+                  <p>Unified Play Enabled <Input @type="checkbox" @checked={{this.model.unified_play_screen}} /> </p>
 
                 </div>
               </div>
@@ -141,7 +145,7 @@
                   <div class="card-heading">
                     Channel Handles <LinkTo @route="help-topic" @model="channel" target="_blank"><i class="fas fa-info-circle"></i></LinkTo>
                   </div>
-      
+
                   <div class="card-body">
 
                     Handles in Channel Chat Enabled <Input @type="checkbox" @checked={{this.model.channel_handles}} />
