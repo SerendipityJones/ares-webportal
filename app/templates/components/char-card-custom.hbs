@@ -104,7 +104,7 @@
           {{/each}}
         </div>
 
-        {{#if this.char.fs3.use_advantages}}
+        {{#if (and this.char.fs3.use_advantages this.char.fs3.advantages)}}
           <div class="card-abilities">
             {{#each this.char.fs3.advantages as |ability|}}
               <div class="card-ability">
