@@ -8,4 +8,5 @@ export default function setupCustomRoutes(router) {
   router.route('keysmagic-magic', { path: '/magic' });
   router.route('keysmagic-spell-list', { path: '/spells' });
   router.route('keysmagic-spell', { path: '/spell/:name' });
+  router.route('census-birthday');
 }

@@ -35,12 +35,14 @@ export default Component.extend({
     if (this.spells.Law && this.spells['Law']['Key Maker']) {
       this.spells['Law']['Key Maker']['special'] = this.spells['Law']['Key Maker']['special'].replace(/^(.+); (.+)$/,"<span> $1;</span> <span>$2</span>" );
     }
-    if (this.spells.Heart && this.spells.Heart.Telepathy) {
-
+    for (const [key, value] of Object.entries(this.spellnotes)) {
+      if (value) {
+        ["Chaos","Elemental","Heart","Law","Life","Sight"].forEach((aspect) => {
+          if (this.spells[aspect][key]) {
+            this.spells[aspect][key]['note'] = value;
+          }
+        });
+      }
     }
-    if (this.spells.Heart && this.spells.Heart.Familiar){
-
-    }
-
   }
 });

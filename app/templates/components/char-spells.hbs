@@ -15,6 +15,13 @@
             {{#if data.special}}
               <span class="spell-special">{{{data.special}}}</span>
             {{/if}}
+            {{#if data.note}}
+              {{#if this.spellnotes.[spell]}}
+                <span class="spell-note">{{{this.spellnotes.[spell]}}}.</span>
+              {{else}}
+                <span class="spell-note">{{{data.note}}}.</span>
+              {{/if}}
+            {{/if}}
           </div>
         </div>
       {{/each-in}}

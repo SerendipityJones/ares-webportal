@@ -1,0 +1,35 @@
+{{page-title "Census By Birthday"}}
+<h1>Census By Birthday</h1>
+
+<CensusNav @types={{this.model.types}} />
+
+<div class="table-responsive">
+
+<table class="table table-striped census-table">
+  <thead>
+      {{#each this.model.census.titles as |title|}}
+        <th>{{title}}</th>
+      {{/each}}
+  </thead>
+
+  <tbody>
+    {{#each this.model.census.chars as |char| }}
+    <tr>
+      {{#each-in char as |field value| }}
+        <td>
+          {{#if (eq field 'char')}}
+            <CharIconInline @char={{value}} />
+          {{else}}
+            {{value}}
+          {{/if}}
+        </td>
+        {{/each-in}}
+    </tr>
+    {{/each}}
+  </tbody>
+
+</table>
+
+</div>
+
+{{outlet}}

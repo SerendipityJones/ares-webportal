@@ -1,5 +1,6 @@
 <p>
 <LinkTo @route="census">[All]</LinkTo>&nbsp;
+<LinkTo @route="census-birthday">[Birthday]</LinkTo>&nbsp;
 {{#each this.types as |type| }}
 <LinkTo @route="census-group" @model={{type}}>[{{type}}]</LinkTo>&nbsp;
 {{/each}}
