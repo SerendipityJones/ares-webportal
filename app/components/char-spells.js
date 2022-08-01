@@ -38,7 +38,7 @@ export default Component.extend({
     for (const [key, value] of Object.entries(this.spellnotes)) {
       if (value) {
         ["Chaos","Elemental","Heart","Law","Life","Sight"].forEach((aspect) => {
-          if (this.spells[aspect][key]) {
+          if (this.spells[aspect] && this.spells[aspect][key]) {
             this.spells[aspect][key]['note'] = value;
           }
         });
