@@ -1,5 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { set, computed } from '@ember/object';
+import { observer } from '@ember/object';
 
 export default Component.extend({
     gameApi: service(),
@@ -18,21 +20,44 @@ export default Component.extend({
     spellOpposed: null,
     destinationType: 'scene',
 
-    didInsertElement: function() {
+    didInsertElement: computed('scene.poseChar', function() {
       this._super(...arguments);
-      let defaultSpell = this.spellList.unopposed ? this.spellList.unopposed[0] : '';
+      if (this.scene && !this.get('scene.poseChar')) {
+
+        let self = this;
+        this.scene.poseable_chars.forEach(c => {
+          if (!this.get('scene.poseChar') && self.scene.participants.any(w => w.name == c.name)) {
+            self.set('scene.poseChar', c);
+          }
+        });
+
+        if (!this.get('scene.poseChar')) {
+          this.set('scene.poseChar', this.get('scene.poseable_chars')[0]);
+        }
+      }
+      let currentChar = this.get('scene.poseChar.name');
+      let defaultSpell = this.spellList[currentChar].unopposed ? this.spellList[currentChar].unopposed[0] : '';
       this.set('spellString', defaultSpell);
-      let defaultOpposed = this.spellList.opposed ? this.spellList.opposed[0] : '';
+      let defaultOpposed = this.spellList[currentChar].opposed ? this.spellList[currentChar].opposed[0] : '';
       this.set('spellOpposed', defaultOpposed);
-    },
+    }),
+
+    poseCharChanged: observer('scene.poseChar', function() {
+      let currentChar = this.get('scene.poseChar.name');
+      let defaultSpell = this.spellList[currentChar].unopposed ? this.spellList[currentChar].unopposed[0] : '';
+      this.set('spellString', defaultSpell);
+      let defaultOpposed = this.spellList[currentChar].opposed ? this.spellList[currentChar].opposed[0] : '';
+      this.set('spellOpposed', defaultOpposed);
+    }),
 
 
     actions: {
 
       addSpell() {
         let api = this.gameApi;
-        let defaultSpell = this.spellList.unopposed ? this.spellList.unopposed[0] : '';
-        let defaultOpposed = this.spellList.opposed ? this.spellList.opposed[0] : '';
+        let currentChar = this.get('scene.poseChar.name');
+        let defaultSpell = this.spellList[currentChar].unopposed ? this.spellList[currentChar].unopposed[0] : '';
+        let defaultOpposed = this.spellList[currentChar].opposed ? this.spellList[currentChar].opposed[0] : '';
         // Needed because the onChange event doesn't get triggered when the list is
         // first loaded, so the roll string is empty.
         let spellString = this.spellString || defaultSpell;

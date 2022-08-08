@@ -1,10 +1,13 @@
+{{#let (get this.spellList (concat this.scene.poseChar.name ".unopposed")) (get this.spellList (concat this.scene.poseChar.name ".opposed"))
+  as |unopposed opposed|
+}}
 <BsModalSimple @title="Cast Spell" @closeTitle="Cancel" @submitTitle="Cast" @size={{null}} @fade={{true}} @open={{this.selectCastSpell}} @onSubmit={{action "addSpell"}} @onHide={{action (mut this.selectCastSpell) false}}>
 <p class="hint">'Rating' is only needed for NPCs, and should be a number. An average attribute is automatically factored in, so "3" will roll 5 dice total for the NPC.</p>
 
     <p><b>Simple Cast</b></p>
     <p>Select a spell, or type one (plus modifiers, if applicable) in the box.</p>
     <span class="castlabel">Spell:</span> <select onchange={{action (mut this.spellString) value="target.value"}}>
-      {{#each this.spellList.unopposed as |spell|}}
+      {{#each unopposed as |spell|}}
         <option value={{spell}}>{{spell}}</option>
       {{/each}}
     </select>
@@ -15,7 +18,7 @@
 
     <p>
     <span class="castlabel">Spell:</span> <select onchange={{action (mut this.spellOpposed) value="target.value"}}>
-      {{#each this.spellList.opposed as |spell|}}
+      {{#each opposed as |spell|}}
         <option value={{spell}}>{{spell}}</option>
       {{/each}}
     </select>
@@ -44,3 +47,4 @@
     </p>
 
   </BsModalSimple>
+{{/let}}
