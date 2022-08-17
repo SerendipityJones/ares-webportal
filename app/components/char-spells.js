@@ -44,5 +44,14 @@ export default Component.extend({
         });
       }
     }
+  },
+
+  actions: {
+    reloadChar() {
+      this.reloadChar();
+    },
+    setNote() {
+      console.log('Woo!');
+    }
   }
 });

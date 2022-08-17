@@ -1,0 +1,17 @@
+<div class="spell-learn">
+  <hr/>
+  <h2>Add Spells</h2>
+  {{this.learnables}}
+  {{#if this.canLearn}}
+    <div class="spell-learning">
+      <PowerSelect id="currentAspect" @selected={{this.aspect}} @options={{this.learn.aspects}} @value={{this.currentAspect}} @onChange={{action "changeSpellList"}} as |aspect|>
+        {{aspect}}
+      </PowerSelect>
+      <PowerSelect id="currentSpell" @selected={{this.spell}} @options={{this.availableSpells}} @value={{this.currentSpell}} @onChange={{action (mut this.spell) }} as |spell|>
+        {{spell}}
+      </PowerSelect>
+      <button {{action 'addSpell' spell}} class="btn btn-primary">Learn</button>
+    </div>
+    <FlashMessages />
+  {{/if}}
+</div>

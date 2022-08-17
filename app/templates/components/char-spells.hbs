@@ -16,14 +16,17 @@
               <span class="spell-special">{{{data.special}}}</span>
             {{/if}}
             {{#if data.note}}
-              {{#if this.spellnotes.[spell]}}
-                <span class="spell-note">{{{this.spellnotes.[spell]}}}.</span>
-              {{else}}
-                <span class="spell-note">{{{data.note}}}.</span>
-              {{/if}}
+              <span class="spell-note">{{{data.note}}}.
+                {{#if this.xp}}
+                  <CharSpellsNote @char={{this.char}} @spell={{spell}} @note={{data.note}} @spells={{this.spells}} @spellnotes={{this.spellnotes}} @category={{cat}} @noteSet={{action "reloadChar"}}/>
+                {{/if}}
+              </span>
             {{/if}}
           </div>
         </div>
       {{/each-in}}
     {{/each-in}}
   </div>
+  {{#if this.xp}}
+  <CharSpellsLearn  @char={{this.char}} @spells={{this.spells}} @spellnotes={{this.spellnotes}} @skills={{this.skills}} @learn={{this.learn}} @spellLearned={{action "reloadChar"}}/>
+  {{/if}}
