@@ -23,22 +23,17 @@
     You can't raise advantages directly with XP.  Submit a request to staff.
   {{/if}}
 {{/if}}
+  
 
 
-
-<p><b>New Ability</b>
-
+<p><b>New Ability</b> 
+  
     {{#if (and (gt this.char.fs3.xp.xp_points 0) this.char.fs3.xp.can_learn)}}
-
+  
     <Input @type="text" size={{25}} @value={{this.newAbility}} />
     <a href="#" class="btn btn-secondary" {{action 'learnNewAbility'}} >Learn</a>
-
+    
     {{else}}
     Out of XP
     {{/if}}
 </p>
-<div class="dotcount">
-  <hr/>
-  <h2>Dotcount</h2>
-  {{{this.char.custom.dotcount}}}
-</div>
