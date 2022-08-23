@@ -29,9 +29,8 @@ export default Route.extend(ReloadableRoute, RouteResetOnExit, {
         let api = this.gameApi;
         return RSVP.hash({
              scene: api.requestOne('liveScene', { id: params['id'] }),
-             abilities: api.request('charAbilities', { id: this.get('session.data.authenticated.id') }),
-             myspells: api.request('charSpells', { id: this.get('session.data.authenticated.id') }),
-             spellList: api.request('charSpellList', { id: this.get('session.data.authenticated.id') }),
+             abilities:  api.request('charAbilities', { id: this.get('session.data.authenticated.id') }),
+             myspells:  api.request('charSpells', { id: this.get('session.data.authenticated.id') }),
              locations: api.request('sceneLocations', { id: params['id'] })
            })
            .then((model) =>  {
