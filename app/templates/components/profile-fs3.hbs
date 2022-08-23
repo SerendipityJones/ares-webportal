@@ -1,7 +1,7 @@
 {{#if (not this.game.disabled_plugins.fs3skills)}}
   {{#if this.char.fs3.show_sheet}}
     <div id="systemfs3sheet" class="tab-pane fade">
-      <Fs3Sheet @char={{this.char}}  @luckTraded={{action "reloadChar"}}/>
+      <Fs3Sheet @char={{this.char}} />
     </div>
    {{/if}}
    {{#if this.char.fs3.xp}}
@@ -11,7 +11,7 @@
    {{/if}}
 {{/if}}
 
-{{#if (not this.game.disabled_plugins.fs3combat)}}
+{{#if (not this.game.disabled_plugins.fs3combat)}}  
 <div id="systemfs3damage" class="tab-pane fade">
   <Fs3Damage @char={{this.char}} />
 </div>
