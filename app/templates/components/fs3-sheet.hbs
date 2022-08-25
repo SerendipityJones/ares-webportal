@@ -39,7 +39,13 @@
 <div class="row">
   <div class="col col-md-6 col-sm-12">
     <br>
-    <b>Luck Points:</b> {{this.char.fs3.luck_points}}
-
+    <b>Luck Points:</b> {{this.char.fs3.luck_points}} {{#if (and (gte this.char.fs3.luck_points 5) this.char.fs3.xp)}}<i class="fad fa-share-square" {{action (mut this.luckConfirm) true}}></i>{{/if}}
   </div>
 </div>
+
+{{#if this.luckConfirm}}
+<BsModalSimple @title="Convert Luck?" @closeTitle="No" @submitTitle="Yes" @size={{null}} @fade={{true}} @position="center" @open={{this.luckConfirm}} @onSubmit={{action "tradeLuck"}} @onHide={{action (mut this.luckConfirm) false}}>
+   Convert 5 Luck points into 1 XP?
+   <FlashMessages />
+</BsModalSimple>
+{{/if}}
