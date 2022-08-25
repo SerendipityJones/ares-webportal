@@ -21,7 +21,7 @@
 
     {{content-for "head"}}
 
-    <link href="https://fonts.googleapis.com/css2?family=Condiment&family=Oswald:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Condiment&family=Oswald:wght@400&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
 
@@ -61,16 +61,6 @@
 
     {{content-for "body-footer"}}
 
-
-    <script>
-    $(document).ready(function() {
-      $('iframe').each(function(i) {
-        if(this.attr('data-src')) {
-          this.attr('src',this.attr('data-src'));
-        }
-      })
-    });
-    </script>
 
   </body>
 </html>
