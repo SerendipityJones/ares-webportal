@@ -38,9 +38,6 @@ export default Component.extend({
           this.noteSet();
         }
       });
-      //this.flashMessages.success(response.success);
-      //this.flashMessages.success('Your ' + this.spell + ' note has been set.');
-      //this.noteSet();
     }
   }
 
