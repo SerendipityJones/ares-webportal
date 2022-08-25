@@ -105,4 +105,14 @@
 
 {{outlet}}
 
+    <script>
+    $(document).ajaxStop(function() {
+      $('iframe').each(function(i) {
+        if($(this).attr('data-src')) {
+          $(this).attr('src',$(this).attr('data-src'));
+        }
+      })
+    });
+    </script>
+
     <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
