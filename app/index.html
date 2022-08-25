@@ -63,15 +63,13 @@
 
 
     <script>
-    function vidinit() {
-      var vidDefer = document.getElementsByTagName('iframe');
-      for (var i=0; i<vidDefer.length; i++) {
-        if(vidDefer[i].getAttribute('data-src')) {
-          vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+    $(document).ready(function() {
+      $('iframe').each(function(i) {
+        if(this.attr('data-src')) {
+          this.attr('src',this.attr('data-src'));
         }
-      }
-    }
-    window.onload = vidinit;
+      })
+    });
     </script>
 
   </body>
