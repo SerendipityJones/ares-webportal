@@ -8,15 +8,20 @@
 
     <title>AresMUSH</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css">
 
     {{content-for "head"}}
+
+    <link href="https://fonts.googleapis.com/css2?family=Condiment&family=Oswald:wght@400;700&family=Open+Sans:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/vendor.css">
 
@@ -30,7 +35,6 @@
 
     <link integrity="" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hint.css/2.6.0/hint.min.css">
 
-    <link href="/fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-IIED/eyOkM6ihtOiQsX2zizxFBphgnv1zbe1bKA+njdFzkr6cDNy16jfIKWu4FNH" crossorigin="anonymous">
     <link integrity="" rel="stylesheet" href="{{rootURL}}assets/ares-webportal.css">
 
@@ -57,6 +61,18 @@
 
     {{content-for "body-footer"}}
 
+
+    <script>
+    function vidinit() {
+      var vidDefer = document.getElementsByTagName('iframe');
+      for (var i=0; i<vidDefer.length; i++) {
+        if(vidDefer[i].getAttribute('data-src')) {
+          vidDefer[i].setAttribute('src',vidDefer[i].getAttribute('data-src'));
+        }
+      }
+    }
+    window.onload = vidinit;
+    </script>
 
   </body>
 </html>
