@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   selectSpendLuck: false,
   selectSkillRoll: false,
+  selectCastSpell: false,
   luckReason: null,
   tagName: '',
   gameApi: service(),
@@ -14,10 +15,10 @@ export default Component.extend({
     spendLuck() {
       let api = this.gameApi;
       let luckReason = this.luckReason;
-    
+
       this.set('selectSpendLuck', false);
       this.set('luckReason', null);
-          
+
       if (!luckReason) {
         this.flashMessages.danger("You haven't given a reason for your luck spend.");
         return;
@@ -31,7 +32,7 @@ export default Component.extend({
         }
       });
     },
-    
+
     startCombat() {
       let api = this.gameApi;
       api.requestOne('startCombat', { scene_id: this.get('scene.id') }, null)
