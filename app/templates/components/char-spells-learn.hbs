@@ -1,5 +1,7 @@
-<div class="spell-learn">
-  <hr/>
+<div class="spell-learn {{if (empty this.spells) 'no-spells'}}">
+  {{#unless (empty this.spells)}}
+    <hr/>
+  {{/unless}}
   <h2>Add Spells</h2>
   {{this.learnables}}
   {{#if this.canLearn}}

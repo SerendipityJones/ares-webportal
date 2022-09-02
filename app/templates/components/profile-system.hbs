@@ -19,7 +19,7 @@
   <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#systemdesc">Description</a></li>
   {{/if}}
 
-  <ProfileFs3Tabs @char={{this.char}} @game={{this.game}} />
+  <ProfileFs3Tabs @char={{this.char}} @game={{this.game}} @learn={{this.learn}}/>
 
   {{#if this.char.achievements}}
       <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#systemachievements">Achievements</a></li>
