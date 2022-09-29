@@ -28,12 +28,12 @@ export default Route.extend(ReloadableRoute, RouteResetOnExit, {
     model: function(params) {
         let api = this.gameApi;
         return RSVP.hash({
-             scene: api.requestOne('liveScene', { id: params['id'] }),
-             abilities: api.request('charAbilities', { id: this.get('session.data.authenticated.id') }),
-             myspells: api.request('charSpells', { id: this.get('session.data.authenticated.id') }),
-             spellList: api.request('charSpellList', { id: this.get('session.data.authenticated.id') }),
-             locations: api.request('sceneLocations', { id: params['id'] })
-           })
+            scene: api.requestOne('liveScene', { id: params['id'] }),
+            abilities: api.request('charAbilities', { id: this.get('session.data.authenticated.id') }),
+            myspells: api.request('charSpells', { id: this.get('session.data.authenticated.id') }),
+            spellList: api.request('charSpellList', { id: this.get('session.data.authenticated.id') }),
+            locations: api.request('sceneLocations', { id: params['id'] }),
+            characters: api.requestMany('characters', { select: 'include_staff' })
            .then((model) =>  {
 
              if (model.scene.shared) {
