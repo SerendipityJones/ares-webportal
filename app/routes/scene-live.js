@@ -34,6 +34,7 @@ export default Route.extend(ReloadableRoute, RouteResetOnExit, {
             spellList: api.request('charSpellList', { id: this.get('session.data.authenticated.id') }),
             locations: api.request('sceneLocations', { id: params['id'] }),
             characters: api.requestMany('characters', { select: 'include_staff' })
+        })    
            .then((model) =>  {
 
              if (model.scene.shared) {
