@@ -1,8 +1,8 @@
 {{page-title "Mail"}}
 <h1>Mail</h1>
-<ul class="nav nav-tabs notification-nav">
+<ul class="nav nav-tabs mail-nav">
   {{#each this.model as |char index| }}
-  
+
   <li class="nav-item">
     <a data-bs-toggle="tab" href="#char{{index}}" class="nav-link {{if (eq index 0) 'active' }}">
     {{char.name}}
@@ -12,7 +12,7 @@
     </a>
   </li>
   {{/each}}
-  
+
 </ul>
 
 <div class="tab-content">
@@ -20,12 +20,12 @@
 {{#each this.model as |char index| }}
 
     <div id="char{{index}}" class="tab-pane fade show {{if (eq index 0) 'active' }}">
-      
-      
+
+
       <MailInbox @inbox={{char}} />
-      
+
     </div>
-  
+
 {{/each}}
 
 </div>
