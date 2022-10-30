@@ -15,27 +15,32 @@ export default Component.extend({
     pcRollSkill: null,
     pcRollName: null,
     rollString: null,
+    defaultAbility: null,
     noDraw: false,
     destinationType: 'scene',
 
     didInsertElement: computed('scene.poseChar', function() {
       this._super(...arguments);
-      if (this.scene && !this.get('scene.poseChar')) {
-
-        let self = this;
-        this.scene.poseable_chars.forEach(c => {
-          if (!this.get('scene.poseChar') && self.scene.participants.any(w => w.name == c.name)) {
-            self.set('scene.poseChar', c);
-          }
-        });
-
+      if (this.scene) {
         if (!this.get('scene.poseChar')) {
-          this.set('scene.poseChar', this.get('scene.poseable_chars')[0]);
+          let self = this;
+          this.scene.poseable_chars.forEach(c => {
+            if (!this.get('scene.poseChar') && self.scene.participants.any(w => w.name == c.name)) {
+              self.set('scene.poseChar', c);
+            }
+          });
+
+          if (!this.get('scene.poseChar')) {
+            this.set('scene.poseChar', this.get('scene.poseable_chars')[0]);
+          }
         }
+        let currentChar = this.get('scene.poseChar.name');
+        let defaultAbility = this.abilityList[currentChar] ? this.abilityList[currentChar][0] : '';
+        this.set('rollString', defaultAbility);
+      } else {
+        let defaultAbility = this.abilities ? this.abilities[0] : '';
+        this.set('rollString', defaultAbility);
       }
-      let currentChar = this.get('scene.poseChar.name');
-      let defaultAbility = this.abilityList[currentChar] ? this.abilityList[currentChar][0] : '';
-      this.set('rollString', defaultAbility);
     }),
 
     poseCharChanged: observer('scene.poseChar', function() {
