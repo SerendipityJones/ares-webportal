@@ -32,6 +32,7 @@ export default Route.extend(ReloadableRoute, RouteResetOnExit, {
         return RSVP.hash({
              scenes: api.requestMany('myScenes'),
              abilities: api.request('charAbilities', { id: this.get('session.data.authenticated.id') }),
+             abilityList: api.request('altAbilityList', { id: this.get('session.data.authenticated.id') }),
              spellList: api.request('charSpellList', { id: this.get('session.data.authenticated.id') }),
              locations: api.request('sceneLocations', { id: params['id'] }),
              chat: api.requestOne('chat'),
