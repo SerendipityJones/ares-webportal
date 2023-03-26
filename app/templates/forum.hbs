@@ -60,7 +60,7 @@
               {{if (eq forum.last_activity.type 'reply') 'replied to' 'posted'}}
               <LinkTo @route="forum-topic" @models={{array forum.id forum.last_activity.id}}>{{forum.last_activity.subject}}</LinkTo>
               <br/>
-              on {{forum.last_activity.date}}
+              {{forum.last_activity.date}}
             {{/if}}
             
         </td>
