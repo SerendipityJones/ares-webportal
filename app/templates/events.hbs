@@ -35,26 +35,17 @@
       <i class="fas fa-calendar-check fa-2x" aria-label="Signed Up"></i>
       {{/if}}
     </td>
-      <td>
-          <LinkTo @route="event" @model={{event.id}}>{{event.title}}</LinkTo>
-          {{#if event.content_warning}}
-          <ContentWarningTag @warning={{event.content_warning}} @position="top-right" />
-          {{/if}}
-      </td>
-
-      <td>
-          <CharIconTiny @char={{event.organizer}} />
-      </td>
-      <td>
-          {{event.start_datetime_local}}
-          <br>({{event.start_time_standard}})
-      </td>
-      <td>
-        {{#each event.tags as |tag|}}
-        <LinkTo @route="wiki-tag" @model={{tag}}>{{tag}}</LinkTo>
-        {{/each}}
-      </td>
-
+    <td>
+      <LinkTo @route="event" @model={{event.id}}>{{event.title}}</LinkTo>
+    </td>
+    <td>
+      <CharIconTiny @char={{event.organizer}} />
+    </td>
+    <td>
+      {{event.start_datetime_local}} ({{event.start_time_standard}})
+    </td>
+    <td>{{#each event.tags as |tag|}}<LinkTo @route="wiki-tag" @model={{tag}}>{{tag}}</LinkTo>{{/each}}</td>
+    <td>{{#if event.content_warning}}<span class="badge content-warning-label"><i class="fas fa-shield-alt fa-2x" aria-label="Content Warning"></i></span> {{this.warning}}{{/if}}</td>
   </tr>
 
   {{/each}}
