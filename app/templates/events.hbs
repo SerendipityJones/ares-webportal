@@ -45,7 +45,7 @@
       {{event.start_datetime_local}} ({{event.start_time_standard}})
     </td>
     <td>{{#each event.tags as |tag|}}<LinkTo @route="wiki-tag" @model={{tag}}>{{tag}}</LinkTo>{{/each}}</td>
-    <td>{{#if event.content_warning}}<span class="badge content-warning-label"><i class="fas fa-shield-alt fa-2x" aria-label="Content Warning"></i></span> {{this.warning}}{{/if}}</td>
+    <td>{{#if event.content_warning}}<span class="badge content-warning-label"><i class="fas fa-shield-alt" aria-label="Content Warning"></i></span> {{event.content_warning}}{{/if}}</td>
   </tr>
 
   {{/each}}
