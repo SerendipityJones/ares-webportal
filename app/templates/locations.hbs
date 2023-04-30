@@ -9,39 +9,122 @@
   <LinkTo @route="search-locations" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i> Search Locations</LinkTo>  
 </div>
 
-<h2>Area Directory</h2>
-
-  
  <ul class="nav nav-tabs" role="tablist">
 
   {{#each this.topLevelAreas as |area index| }}
-   <li role="presentation" class="nav-item"><a href="#area{{area.id}}" aria-controls="{{area.id}}" role="tab" data-bs-toggle="tab" class="nav-link {{if (eq index 0) 'active' }}">{{area.name}}</a></li>
+    {{#unless (eq area.name "Offstage")}}
+      <li role="presentation" class="nav-item"><a href="#area{{area.id}}" aria-controls="{{area.id}}" role="tab" data-bs-toggle="tab" class="nav-link {{if (eq index 0) 'active' }}">{{area.name}}</a></li>
+    {{/unless}}
   {{/each}}
-   <li role="presentation" class="nav-item"><a href="#unassigned" aria-controls="unassigned" role="tab" data-bs-toggle="tab" class="nav-link">No Area</a></li>
+  <li role="presentation" class="nav-item"><a href="#offstage" aria-controls="offstage" role="tab" data-bs-toggle="tab" class="nav-link">Offstage</a></li>  
+  {{#if this.model.orphan_rooms}}
+    <li role="presentation" class="nav-item"><a href="#orphans" aria-controls="orphans" role="tab" data-bs-toggle="tab" class="nav-link">No Area</a></li>
+  {{/if}}
 
 </ul>
-
 <div class="tab-content">
-
+{{#if this.model.display_sections}}
   {{#each this.topLevelAreas as |area index| }}
   <div class="tab-pane {{if (eq index 0) 'active' }}" id="area{{area.id}}">
+    {{#unless (eq area.name "Offstage")}}
+      <h2>{{area.name}}</h2>
 
-    <a name="{{area.id}}"></a>
-    <AreaDirectory @area={{area}} />
-      
+      <div class="area-entry-summary">
+        {{#if area.summary}}
+          <p><AnsiFormat @text={{area.summary}} /></p>
+        {{/if}}
+        
+        {{#if area.rooms}}
+          <h3>Locations</h3>
+          <ul>
+            {{#each area.rooms as |r|}}
+            <li><LinkTo @route="location" @model={{r.id}}>{{r.name}}</LinkTo></li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      </div>
+
+  <div class="area-buttons">
+    <LinkTo @route="area" @model={{area.id}} class="btn btn-secondary">View Details</LinkTo>
   </div>
-  {{/each}}
-
-  <div class="tab-pane" id="unassigned">
-
-  <h3>Locations With No Area</h3>
   
-  <ul>
-    {{#each this.model.orphan_rooms as |room|}}
-      <li><LinkTo @route="location" @model={{room.id}}>{{room.name}}</LinkTo></li>
+      <div class="area-directory">
+        {{#each area.descendants as |child|}}
+          <AreaDirectory @area={{child}} />
+        {{/each}}
+      </div>
+    {{/unless}}
+  </div>  
+  {{/each}}
+{{else}}
+  <div class="area-directory">
+    {{#each this.topLevelAreas as |area index| }}
+      {{#unless (eq area.name "Offstage")}}
+        <AreaDirectory @area={{area}} @areaIndex={{index}} />
+
+        {{#each area.descendants as |child|}}
+          <AreaDirectory @area={{child}} />
+        {{/each}}
+      {{/unless}}
     {{/each}}
-  </ul>
   </div>
+{{/if}}
+  
+  {{#each this.topLevelAreas as |area index| }}
+    {{#if (eq area.name "Offstage")}}
+      <div class="tab-pane {{if (eq index 0) 'active' }}" id="offstage">
+        <h2>Offstage</h2>
+
+      <div class="area-entry-summary">
+        {{#if area.summary}}
+          <p><AnsiFormat @text={{area.summary}} /></p>
+        {{/if}}
+        
+        {{#if area.rooms}}
+          <h3>Locations</h3>
+          <ul>
+            {{#each area.rooms as |r|}}
+            <li><LinkTo @route="location" @model={{r.id}}>{{r.name}}</LinkTo></li>
+            {{/each}}
+          </ul>
+        {{/if}}
+      </div>
+
+  <div class="area-buttons">
+    <LinkTo @route="area" @model={{area.id}} class="btn btn-secondary">View Details</LinkTo>
+  </div>
+  
+      <div class="area-directory">
+        {{#each area.descendants as |child|}}
+          <AreaDirectory @area={{child}} />
+        {{/each}}
+      </div>
+    </div>  
+    {{/if}}
+  {{/each}}
+  
+  {{#if this.model.orphan_rooms}}
+    <div class="tab-pane {{if (eq index 0) 'active' }}" id="orphans">
+      <h2>No Area Set</h2>
+      <div class="area-directory">
+        <div class="area-entry-summary">
+          <h3>Locations</h3>
+          <ul>
+            {{#each this.model.orphan_rooms as |room|}}
+            <li><LinkTo @route="location" @model={{room.id}}>{{room.name}}</LinkTo></li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {{/if}}  
 </div>
+  
+{{#if this.model.can_manage}}
+<div class="action-buttons">
+  <LinkTo @route="location-create" class="btn btn-secondary">Create Location</LinkTo>  
+  <LinkTo @route="area-create" class="btn btn-secondary">Create Area</LinkTo>  
+</div>
+{{/if}}
 
 {{outlet}}
