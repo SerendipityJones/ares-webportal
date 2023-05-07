@@ -157,8 +157,8 @@
                  {{#if this.txtExtraInstalled}}
                    <LiveSceneTxt @scenePose={{this.scene.draftPose}} @scene={{this.scene}} />
                  {{/if}}
-
-             <LiveSceneCustomScenepose @scenePose={{this.scene.draftPose}} @scene={{this.scene}} />
+                 
+             <LiveSceneCustomScenepose @scenePose={{this.scene.draftPose}} @scene={{this.scene}} @custom={{this.custom}} />
              </div>
 
              <div class="scene-pose-select">
@@ -209,9 +209,9 @@
                {{#if this.diceExtraInstalled}}
                <LiveSceneDice @scene={{this.scene}} />
                {{/if}}
-
-               <LiveSceneCustomPlay @scene={{this.scene}} @abilities={{this.abilities}} />
-
+            
+               <LiveSceneCustomPlay @scene={{this.scene}} @abilities={{this.abilities}} @custom={{this.custom}} />
+                 
              </DropdownMenu>
 
              {{/if}}
@@ -337,7 +337,7 @@
     <BsModalSimple @title="Character Card" @closeTitle="Close" @size={{null}} @fade={{true}} @open={{this.characterCard}} @onHide={{action (mut this.characterCard) false}}>
 
       {{#if this.scene.use_custom_char_cards}}
-        <CharCardCustom @char={{this.characterCardInfo}} />
+        <CharCardCustom @char={{this.characterCardInfo}} @custom={{this.custom}} />
       {{else}}
         <CharCard @char={{this.characterCardInfo}} />
       {{/if}}
