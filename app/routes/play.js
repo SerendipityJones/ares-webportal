@@ -38,7 +38,8 @@ export default Route.extend(ReloadableRoute, RouteResetOnExit, {
              locations: api.request('sceneLocations', { id: params['id'] }),
              chat: api.requestOne('chat'),
              characters: api.requestMany('characters', { select: 'all' }),
-             account: api.requestOne('accountInfo', {})
+             account: api.requestOne('accountInfo', {}),
+             app: this.modelFor('application')
            })
            .then((model) => EmberObject.create(model));
     },

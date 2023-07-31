@@ -12,7 +12,7 @@
 {{/if}}
 
 <div class="action-buttons">
-  {{#if isApproved}}
+  {{#if this.isApproved}}
       <LinkTo @route="event-create" class="btn btn-primary">Create Event</LinkTo>
   {{/if}}
 </div>
@@ -52,7 +52,7 @@
 </tbody>
 </table>
 
-<div class="alert alert-info">If you're using an iCalendar-compatible calendar app like Outlook or Apple iCal, you can add the game's iCal feed to your app and it will automatically load events into your calendar: <a href="{{calendarUrl}}">{{calendarUrl}}</a>.</div>
+<div class="alert alert-info">If you're using an iCalendar-compatible calendar app like Outlook or Apple iCal, you can add the game's iCal feed to your app and it will automatically load events into your calendar: <a href="{{this.calendarUrl}}">{{this.calendarUrl}}</a>.</div>
 
 
 
