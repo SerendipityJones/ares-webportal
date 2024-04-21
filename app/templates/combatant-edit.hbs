@@ -35,8 +35,8 @@
             <b>Team:</b>
     </div>
     <div class="col-sm-9">
-
-            <PowerSelect @selected={{this.model.team}} @options={{teams}} @onChange={{action "teamChanged"}} as |team|>
+        
+            <PowerSelect @selected={{this.model.team}} @options={{this.teams}} @onChange={{action "teamChanged"}} as |team|>
               {{team}}
             </PowerSelect>
 
@@ -126,11 +126,10 @@
     <div class="col-sm-9">
 
             <Input @type="text" size={{25}} id="vehicleName" @value={{this.model.vehicle}} />
-            <p class="combat-targets">
-            <b>Passenger Type:</b> <PowerSelect @selected={{this.model.passenger_type}} @options={{passengerTypes}} @onChange={{action "passengerTypeChanged"}} as |passengerType|>
+            <br>
+            <b>Passenger Type:</b> <PowerSelect @selected={{this.model.passenger_type}} @options={{this.passengerTypes}} @onChange={{action "passengerTypeChanged"}} as |passengerType|>
               {{passengerType}}
             </PowerSelect>
-           </p>
 
     </div>
 
@@ -157,8 +156,8 @@
 
 <div class="action-buttons">
 
-  <LinkTo @route="combat" @model={{this.model.combat}} class="btn btn-secondary">Cancel</LinkTo>
-  <button class="btn btn-warning" {{action (mut confirmRemoveCombatant) true}} >Remove</button>
+  <LinkTo @route="combat" @model={{this.model.combat}} class="btn btn-secondary">Cancel</LinkTo>  
+  <button class="btn btn-warning" {{action (mut this.confirmRemoveCombatant) true}} >Remove</button>
   <button class="btn btn-primary" {{action 'save'}} >Save</button>
 
 </div>
@@ -167,7 +166,7 @@
 
 
 
-<BsModalSimple @title="Confirm Remove" @closeTitle="Cancel" @submitTitle="Confirm" @size={{null}} @fade={{true}} @open={{confirmRemoveCombatant}} @onSubmit={{action "removeCombatant"}} @onHide={{action (mut confirmRemoveCombatant) false}}>
+<BsModalSimple @title="Confirm Remove" @closeTitle="Cancel" @submitTitle="Confirm" @size={{null}} @fade={{true}} @open={{this.confirmRemoveCombatant}} @onSubmit={{action "removeCombatant"}} @onHide={{action (mut this.confirmRemoveCombatant) false}}>
     This will remove them from combat.  Are you sure?
   </BsModalSimple>
 

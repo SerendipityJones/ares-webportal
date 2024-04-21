@@ -1,5 +1,5 @@
-{{#let (get this.abilityList this.scene.poseChar.name)
-  as |currentAbilities|
+{{#let (get this.abilityList this.scene.poseChar.name) this.abilities
+  as |sceneAbilities jobAbilities|
 }}
 <BsModalSimple @title="Add Ability Roll" @closeTitle="Cancel" @submitTitle="Roll" @size={{null}} @fade={{true}} @open={{this.selectSkillRoll}} @onSubmit={{action "addRoll"}} @onHide={{action (mut this.selectSkillRoll) false}}>
 
@@ -9,9 +9,15 @@
     <p><b>Regular Roll</b></p>
     <p>Select an ability, or type one (plus modifiers, if applicable) in the box.</p>
     <select onchange={{action (mut this.rollString) value="target.value"}}>
-      {{#each currentAbilities as |ability|}}
-        <option value={{ability}}>{{ability}}</option>
-      {{/each}}
+      {{#if this.scene}}
+        {{#each sceneAbilities as |ability|}}
+          <option value={{ability}}>{{ability}}</option>
+        {{/each}}
+      {{else}}
+        {{#each jobAbilities as |ability|}}
+          <option value={{ability}}>{{ability}}</option>
+        {{/each}}
+      {{/if}}
     </select>
     <Input @type="text" size={{25}} id="rollString" @enter={{action "addRoll"}} @value={{this.rollString}} />
 
