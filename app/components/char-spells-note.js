@@ -8,7 +8,7 @@ export default Component.extend({
   currentNote: computed( 'spellnotes', 'spells', function() {
     var theNote = this.get('spellnotes')[this.spell];
     if (theNote) {
-      theNote = theNote.replace(this.get('spells')[this.category].[this.spell].prefix,"");
+      theNote = theNote.replace(this.get('spells')[this.category][this.spell].prefix,"");
     } else {
       theNote = "None";
     }
