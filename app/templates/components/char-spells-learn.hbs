@@ -6,13 +6,13 @@
   {{this.learnables}}
   {{#if this.canLearn}}
     <div class="spell-learning">
-      <PowerSelect id="currentAspect" @selected={{this.aspect}} @options={{this.learn.aspects}} @value={{this.currentAspect}} @onChange={{action "changeSpellList"}} as |aspect|>
-        {{aspect}}
+      <PowerSelect id="currentAspect" @selected={{this.aspect}} @options={{this.learn.aspects}} @value={{this.currentAspect}} @onChange={{action "changeSpellList"}} as |currentAspect|>
+        {{currentAspect}}
       </PowerSelect>
-      <PowerSelect id="currentSpell" @selected={{this.spell}} @options={{this.availableSpells}} @value={{this.currentSpell}} @onChange={{action (mut this.spell) }} as |spell|>
-        {{spell}}
+      <PowerSelect id="currentSpell" @selected={{this.spell}} @options={{this.availableSpells}} @value={{this.currentSpell}} @onChange={{action (mut this.spell) }} as |currentSpell|>
+        {{currentSpell}}
       </PowerSelect>
-      <button {{action 'addSpell' spell}} class="btn btn-primary">Learn</button>
+      <button {{action 'addSpell' this.spell}} class="btn btn-primary">Learn</button>
     </div>
     <FlashMessages />
   {{/if}}
