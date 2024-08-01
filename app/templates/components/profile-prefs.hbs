@@ -2,28 +2,28 @@
   {{#each-in this.char.pref_list as |cat data|}}
   <table>
     <tr><td colspan="2"><h2>{{cat}}</h2></td></tr>
-    {{#each data as |pref|}}
+    {{#each-in data as |key desc|}}
       <tr>
-        <td>{{pref}}</td>
+        <td>{{desc}}</td>
         <td class="pref-dots">
-          {{#if (eq (get this.char.rp_prefs (concat cat "." pref)) "1")}}
+          {{#if (eq (get this.char.rp_prefs (concat cat "." key)) "1")}}
             <i class="fas fa-circle fa-sm char-dot-fill red"><span class="reader-only">Red</span></i>
           {{else}}
             <i class="far fa-circle fa-sm char-dot-empty"></i>
           {{/if}}
-          {{#if (eq (get this.char.rp_prefs (concat cat "." pref)) "2")}}
+          {{#if (eq (get this.char.rp_prefs (concat cat "." key)) "2")}}
             <i class="fas fa-circle fa-sm char-dot-fill yellow"><span class="reader-only">Yellow</span></i>
           {{else}}
             <i class="far fa-circle fa-sm char-dot-empty"></i>
           {{/if}}
-          {{#if (eq (get this.char.rp_prefs (concat cat "." pref)) "3")}}
+          {{#if (eq (get this.char.rp_prefs (concat cat "." key)) "3")}}
             <i class="fas fa-circle fa-sm char-dot-fill green"><span class="reader-only">Green</span></i>
           {{else}}
             <i class="far fa-circle fa-sm char-dot-empty"></i>
           {{/if}}
         </td>
       </tr>
-    {{/each}}
+    {{/each-in}}
   </table>
   {{/each-in}}
   {{#if this.char.rp_notes}}
