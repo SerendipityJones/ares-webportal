@@ -1,0 +1,37 @@
+<div id="rpprefs" class="tab-pane fade show">
+  {{#each-in this.model.char.pref_list as |cat data|}}
+  <table>
+    <tr><td colspan="2"><h2>{{cat}}</h2></td></tr>
+    {{#each-in data as |key desc|}}
+      <tr>
+        <td>{{desc}}</td>
+        <td class="pref-dots">
+          <label for="{{key}}-red">
+          {{#if (eq (get this.model.char.rp_prefs (concat cat "." key)) "1")}}
+            <input type="radio" value="1" checked id="{{key}}-red" name={{key}} class="red" />
+          {{else}}
+            <input type="radio" value="1" id="{{key}}-red" name={{key}} class="red" onclick={{action "updatePref" cat key "1"}}/>
+          {{/if}}
+          </label>
+          <label for="{{key}}-yellow">
+          {{#if (eq (get this.model.char.rp_prefs (concat cat "." key)) "2")}}
+             <input type="radio" value="2" checked id="{{key}}-yellow" name={{key}} class="yellow" />
+          {{else}}
+             <input type="radio" value="2" id="{{key}}-yellow" name={{key}} class="yellow" onclick={{action "updatePref" cat key "2"}} />
+          {{/if}}
+          </label>
+          <label for="{{key}}-green">
+          {{#if (eq (get this.model.char.rp_prefs (concat cat "." key)) "3")}}
+            <input type="radio" value="3" checked id="{{key}}-green" name={{key}} class="green" />
+          {{else}}
+            <input type="radio" value="3" id="{{key}}-green" name={{key}} class="green" onclick={{action "updatePref" cat key "3"}} />
+          {{/if}}
+          </label>
+        </td>
+      </tr>
+    {{/each-in}}
+  </table>
+  {{/each-in}}
+  <h2>Notes:</h2>
+    <MarkdownEditor @text={{this.model.char.rp_notes}} />
+</div>

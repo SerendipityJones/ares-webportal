@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { action } from '@ember/object';
 
 export default Controller.extend({
 
@@ -36,8 +35,8 @@ export default Controller.extend({
   },
 
   actions: {
-
     clickBox: function() {
+      console.log("Clicked.");
       const dataTypes = ["colour","material","motif","style"];
       const chosenType = {};
       var gatherChosen = 0
@@ -75,10 +74,12 @@ export default Controller.extend({
         });
         //set all pics hidden
         var self = this;
+        console.log(thePics);
         thePics.forEach((item, i) => {
           self.addClass(item, "hidekey");
         });
         //then unhide the ones in the current array
+        console.log(currentPics);
         currentPics.forEach((item, i) => {
           self.removeClass(item, "hidekey");
         });

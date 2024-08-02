@@ -1,0 +1,34 @@
+<h1>RP Preferences</h1>
+
+<div class="prefs-list">
+  {{#each-in this.model.pref_sort as |cat prefs|}}
+    <div class="prefs-list-cat">
+      <h2>{{cat}}</h2>
+      {{#each-in prefs as |pref level|}}
+        <div class="prefs-list-pref">
+          <div class="prefs-list-title">{{get this.model.pref_list (concat cat '.' pref)}}</div>
+          <div class="prefs-list-chars">
+            <div class="prefs-list-red">
+              <div class="prefs-list-colour">Red:</div>
+              <div class="prefs-list-names">
+                {{#each (get level (concat '1')) as |name index|}}{{#unless (eq index 0)}}, {{/unless}}{{name}}{{/each}}
+              </div>
+            </div>
+            <div class="prefs-list-yellow">
+              <div class="prefs-list-colour">Yellow:</div>
+              <div class="prefs-list-names">
+                {{#each (get level (concat '2')) as |name index|}}{{#unless (eq index 0)}}, {{/unless}}{{name}}{{/each}}
+              </div>
+            </div>
+            <div class="prefs-list-green">
+              <div class="prefs-list-colour">Green:</div>
+              <div class="prefs-list-names">
+                {{#each (get level (concat '3')) as |name index|}}{{#unless (eq index 0)}}, {{/unless}}{{name}}{{/each}}
+              </div>
+            </div>
+          </div>
+        </div>
+      {{/each-in}}
+    </div>
+  {{/each-in}}
+</div>
