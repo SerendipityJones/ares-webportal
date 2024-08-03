@@ -48,6 +48,9 @@
     {{#unless (empty this.char.custom.spells)}}
       <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#spells">Spells</a></li>
     {{/unless}}
+    {{#unless (empty this.char.custom.prefs)}}
+      <li class="nav-item"><a data-bs-toggle="tab" class="nav-link" href="#prefs">RP Prefs</a></li>
+    {{/unless}}
   </ul>
 
   <div class="tab-content">
@@ -117,11 +120,17 @@
 
       </div>
     {{/if}}
-
     {{#if this.char.custom.spells}}
       <div id="spells" class="tab-pane fade show">
 
         <CharSpells @spells={{this.char.custom.spells}} @spellnotes={{this.char.custom.spellnotes}} @skills={{this.char.fs3.action_skills}}/>
+
+      </div>
+    {{/if}}
+    {{#if this.char.custom.prefs}}
+      <div id="prefs" class="tab-pane fade show">
+
+        <ProfilePrefs @rp_prefs={{this.char.custom.prefs.rp_prefs}} @rp_notes={{this.char.custom.prefs.rp_notes}} @pref_list={{this.char.custom.prefs.pref_list}}/>
 
       </div>
     {{/if}}

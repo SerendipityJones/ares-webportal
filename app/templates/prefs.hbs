@@ -31,4 +31,15 @@
       {{/each-in}}
     </div>
   {{/each-in}}
+  <div class="prefs-list-cat">
+    <h2>Notes</h2>
+    <div class="prefs-list-pref">
+      <div class="prefs-list-title">Set</div>
+      <div class="prefs-list-chars">
+        <div class="prefs-list-notes">
+          <div class="prefs-list-names">{{#each this.model.pref_notes as |name index|}}{{#unless (eq index 0)}}, {{/unless}}<LinkTo @route="char" @model={{name}}>{{name}}</LinkTo>{{/each}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
