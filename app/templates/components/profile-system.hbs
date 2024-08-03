@@ -78,7 +78,7 @@
   </div>
 
   {{#if this.prefsExtraInstalled}}
-    <ProfilePrefs @char={{this.char}} />
+    <ProfilePrefs @rp_prefs={{this.char.rp_prefs}} @rp_notes={{this.char.rp_notes}} @pref_list={{this.char.pref_list}} />
   {{/if}}
 
   {{#if this.char.background}}
