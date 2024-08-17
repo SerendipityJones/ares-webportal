@@ -25,11 +25,11 @@
       {{/each}}
     </div>
     {{/if}}
-    
-    {{#if this.scene.in_trash}}     
+
+    {{#if this.scene.in_trash}}
     <div class="alert alert-warning scene-deletion-warning">
       <i class="fa fa-trash"></i>
-      Marked for deletion. Download, share, or restart before it's deleted on {{scene.trash_date}}.
+      Marked for deletion. Download, share, or restart before it's deleted on {{this.scene.trash_date}}.
     </div>
     {{/if}}
 
@@ -164,7 +164,7 @@
                  {{#if this.txtExtraInstalled}}
                    <LiveSceneTxt @scenePose={{this.scene.draftPose}} @scene={{this.scene}} />
                  {{/if}}
-                 
+
              <LiveSceneCustomScenepose @scenePose={{this.scene.draftPose}} @scene={{this.scene}} @custom={{this.custom}} />
              </div>
 
@@ -216,9 +216,9 @@
                {{#if this.diceExtraInstalled}}
                <LiveSceneDice @scene={{this.scene}} />
                {{/if}}
-            
+
                <LiveSceneCustomPlay @scene={{this.scene}} @abilities={{this.abilities}} @custom={{this.custom}} />
-                 
+
              </DropdownMenu>
 
              {{/if}}
