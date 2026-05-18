@@ -6,23 +6,37 @@
 <a name="top"></a>
 
 <div class="action-buttons">
-  <LinkTo @route="search-locations" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i> Search Locations</LinkTo>  
+  <a data-bs-toggle="collapse" href="#legend" class="btn btn-secondary btn-collapse">Icon Legend <i class="fa fa-caret-down"></i></a>
+  <LinkTo @route="search-locations" class="btn btn-secondary"><i class="fa fa-search" aria-hidden="true"></i> Search Locations</LinkTo>
 </div>
 
- <ul class="nav nav-tabs" role="tablist">
 
-  {{#each this.topLevelAreas as |area index| }}
-    {{#unless (eq area.name "Offstage")}}
-      <li role="presentation" class="nav-item"><a href="#area{{area.id}}" aria-controls="{{area.id}}" role="tab" data-bs-toggle="tab" class="nav-link {{if (eq index 0) 'active' }}">{{area.name}}</a></li>
-    {{/unless}}
+<div id="legend" class="card-collapse collapse">
+  <div class="location-legend">
+  {{#each this.model.legend as |icon|}}
+  <div class="location-legend-item">
+    <i aria-hidden="true" class="{{icon.icon}} location-legend-icon"></i>
+    <span class="location-legend-name">{{icon.name}}</span>
+  </div>
   {{/each}}
-  <li role="presentation" class="nav-item"><a href="#offstage" aria-controls="offstage" role="tab" data-bs-toggle="tab" class="nav-link">Offstage</a></li>  
-  {{#if this.model.orphan_rooms}}
-    <li role="presentation" class="nav-item"><a href="#orphans" aria-controls="orphans" role="tab" data-bs-toggle="tab" class="nav-link">No Area</a></li>
-  {{/if}}
+  </div>
+</div>
 
-</ul>
-<div class="tab-content">
+<div class="area-quickjump">
+  {{#each this.topLevelAreas as |area index| }}
+    {{#if (not (eq index 0 ))}}
+    &nbsp;|&nbsp;
+    {{/if}}
+
+    <a href="#area{{index}}">{{area.name}}</a>
+  {{/each}}
+  &nbsp;|&nbsp; <a href="#orphans">No Area Set</a>
+</div>
+
+
+
+
+
 {{#if this.model.display_sections}}
   {{#each this.topLevelAreas as |area index| }}
   <div class="tab-pane {{if (eq index 0) 'active' }}" id="area{{area.id}}">
@@ -33,7 +47,7 @@
         {{#if area.summary}}
           <p><AnsiFormat @text={{area.summary}} /></p>
         {{/if}}
-        
+
         {{#if area.rooms}}
           <h3>Locations</h3>
           <ul>
@@ -47,14 +61,14 @@
   <div class="area-buttons">
     <LinkTo @route="area" @model={{area.id}} class="btn btn-secondary">View Details</LinkTo>
   </div>
-  
+
       <div class="area-directory">
         {{#each area.descendants as |child|}}
           <AreaDirectory @area={{child}} />
         {{/each}}
       </div>
     {{/unless}}
-  </div>  
+  </div>
   {{/each}}
 {{else}}
   <div class="area-directory">
@@ -69,7 +83,7 @@
     {{/each}}
   </div>
 {{/if}}
-  
+
   {{#each this.topLevelAreas as |area index| }}
     {{#if (eq area.name "Offstage")}}
       <div class="tab-pane {{if (eq index 0) 'active' }}" id="offstage">
@@ -79,7 +93,7 @@
         {{#if area.summary}}
           <p><AnsiFormat @text={{area.summary}} /></p>
         {{/if}}
-        
+
         {{#if area.rooms}}
           <h3>Locations</h3>
           <ul>
@@ -93,16 +107,16 @@
   <div class="area-buttons">
     <LinkTo @route="area" @model={{area.id}} class="btn btn-secondary">View Details</LinkTo>
   </div>
-  
+
       <div class="area-directory">
         {{#each area.descendants as |child|}}
           <AreaDirectory @area={{child}} />
         {{/each}}
       </div>
-    </div>  
+    </div>
     {{/if}}
   {{/each}}
-  
+
   {{#if this.model.orphan_rooms}}
     <div class="tab-pane {{if (eq index 0) 'active' }}" id="orphans">
       <h2>No Area Set</h2>
@@ -117,13 +131,13 @@
         </div>
       </div>
     </div>
-  {{/if}}  
+  {{/if}}
 </div>
-  
+
 {{#if this.model.can_manage}}
 <div class="action-buttons">
-  <LinkTo @route="location-create" class="btn btn-secondary">Create Location</LinkTo>  
-  <LinkTo @route="area-create" class="btn btn-secondary">Create Area</LinkTo>  
+  <LinkTo @route="location-create" class="btn btn-secondary">Create Location</LinkTo>
+  <LinkTo @route="area-create" class="btn btn-secondary">Create Area</LinkTo>
 </div>
 {{/if}}
 
