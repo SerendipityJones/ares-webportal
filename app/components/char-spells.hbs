@@ -18,7 +18,7 @@
             {{#if data.note}}
               <span class="spell-note">{{{data.note}}}.
                 {{#if this.xp}}
-                  <CharSpellsNote @char={{this.char}} @spell={{spell}} @note={{data.note}} @spells={{this.spells}} @spellnotes={{this.spellnotes}} @category={{cat}} @noteSet={{action "reloadChar"}}/>
+                  <CharSpellsNote @char={{this.char}} @spell={{spell}} @note={{data.note}} @spells={{this.spells}} @spellnotes={{this.spellnotes}} @category={{cat}} @noteSet={{this.reloadChar}}/>
                 {{/if}}
               </span>
             {{/if}}
@@ -28,5 +28,5 @@
     {{/each-in}}
   </div>
   {{#if this.xp}}
-  <CharSpellsLearn  @char={{this.char}} @spells={{this.spells}} @spellnotes={{this.spellnotes}} @skills={{this.skills}} @learn={{this.learn}} @spellLearned={{action "reloadChar"}}/>
+  <CharSpellsLearn  @char={{this.char}} @spells={{this.spells}} @spellnotes={{this.spellnotes}} @skills={{this.skills}} @learn={{this.learn}} @spellLearned={{this.reloadChar}}/>
   {{/if}}

@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import EmberObject, { computed } from '@ember/object';
+import EmberObject, { action, computed } from '@ember/object';
 
 export default Component.extend({
 
@@ -46,12 +46,14 @@ export default Component.extend({
     }
   },
 
-  actions: {
-    reloadChar() {
-      this.reloadChar();
-    },
-    setNote() {
-      console.log('Woo!');
-    }
+  @action
+  reloadChar() {
+    this.reloadChar();
+  },
+
+  @action
+  setNote() {
+    console.log('Woo!');
   }
+
 });

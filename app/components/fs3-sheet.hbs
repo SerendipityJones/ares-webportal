@@ -22,7 +22,7 @@
 </div>
 
 {{#if this.luckConfirm}}
-<BsModalSimple @title="Convert Luck?" @closeTitle="No" @submitTitle="Yes" @size={{null}} @fade={{true}} @position="center" @open={{this.luckConfirm}} @onSubmit={{action "tradeLuck"}} @onHide={{action (mut this.luckConfirm) false}}>
+<BsModalSimple @title="Convert Luck?" @closeTitle="No" @submitTitle="Yes" @size={{null}} @fade={{true}} @position="center" @open={{this.luckConfirm}} @onSubmit={{this.tradeLuck}} @onHide={{(fn this.luckConfirm) false}}>
    Convert 5 Luck points into 1 XP?
    <FlashMessages />
 </BsModalSimple>

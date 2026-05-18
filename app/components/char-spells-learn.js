@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed, set } from '@ember/object';
+import { action, computed, set } from '@ember/object';
+
 
 export default Component.extend({
   gameApi: service(),
@@ -68,34 +69,37 @@ export default Component.extend({
     return msg;
   }),
 
-  actions: {
-    spellLearned() {
-        this.reloadChar();
-    },
-    changeSpellList: function(newAspect) {
-      let fullList = this.get('learn.learnable');
-      let catList = fullList[newAspect];
-      this.set('aspect', newAspect);
-      this.set('availableSpells', this.get('learn.learnable')[newAspect]);
-      this.set('spell', this.get('availableSpells')[0]);
-    },
-    addSpell: function(aspect) {
-      let api = this.gameApi;
-      let spell = this.get('spell');
-      let category = this.get('aspect');
-      api.requestOne('charSpellLearn', {
-          id: this.get('char.id'),
-          spell: spell,
-          category: category
-        }, null)
-      .then( (response) => {
-        if (response.error) {
-          return;
-        }
-      });
-      this.flashMessages.success('Your ' + category + ' spells now include ' + spell + '.');
-      this.spellLearned();
-    }
+  @action
+  spellLearned() {
+      this.reloadChar();
+  },
+
+  @action
+  changeSpellList(newAspect) {
+    let fullList = this.get('learn.learnable');
+    let catList = fullList[newAspect];
+    this.set('aspect', newAspect);
+    this.set('availableSpells', this.get('learn.learnable')[newAspect]);
+    this.set('spell', this.get('availableSpells')[0]);
+  },
+
+  @action
+  addSpell(aspect) {
+    let api = this.gameApi;
+    let spell = this.get('spell');
+    let category = this.get('aspect');
+    api.requestOne('charSpellLearn', {
+        id: this.get('char.id'),
+        spell: spell,
+        category: category
+      }, null)
+    .then( (response) => {
+      if (response.error) {
+        return;
+      }
+    });
+    this.flashMessages.success('Your ' + category + ' spells now include ' + spell + '.');
+    this.spellLearned();
   }
 
 });

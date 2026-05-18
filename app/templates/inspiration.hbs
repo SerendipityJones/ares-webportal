@@ -9,7 +9,7 @@
   <p><AnsiFormat @text={{this.model.newAction}} /></p>
   <p>An involved item or trinket could be <AnsiFormat @text={{~this.model.newThing~}} /> Consider using a theme of <AnsiFormat @text={{this.model.newCue}} /></p>
 </blockquote>
-<BsButton @type="primary" class="inspiration" {{action "newInspiration"}}>
+<BsButton @type="primary" class="inspiration" {{this.newInspiration}}>
   Inspire Me Again!
 </BsButton>
 
