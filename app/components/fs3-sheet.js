@@ -25,6 +25,11 @@ export default Component.extend({
         this.luckTraded();
       }
     });
-  }
+  },
+
+  @action
+  luckConfirm(value) {
+    this.set('luckConfirm', value);
+  },
 
 });

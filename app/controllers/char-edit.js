@@ -120,5 +120,5 @@ export default Controller.extend({
             this.router.transitionTo('char', this.get('model.char.name'));
 
         });
-    }
+    },
 });

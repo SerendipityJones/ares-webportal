@@ -36,7 +36,7 @@ export default Controller.extend({
   },
 
   @action
-  clickBox:() {
+  clickBox() {
     console.log("Clicked.");
     const dataTypes = ["colour","material","motif","style"];
     const chosenType = {};
