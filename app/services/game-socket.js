@@ -186,7 +186,6 @@ export default Service.extend(AresConfig, {
 
     handleConnect() {
       this.set('connected', true);
-      this.set('wasUp', true);
       this.set('lastActivity', new Date());
       this.set('connectionRetries', 0);
       this.sendCharId();
