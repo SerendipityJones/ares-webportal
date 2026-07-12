@@ -7,14 +7,14 @@ export default Service.extend(AresConfig, {
     router: service(),
     flashMessages: service(),
     favicon: service(),
-
+    
     socket: null,
     charId: null,
     callbacks: null,
     connected: false,
     lastActivity: null,
     connectionRetries: 0,
-
+  
     init: function() {
       this._super(...arguments);
       this.set('callbacks', {});
@@ -25,45 +25,45 @@ export default Service.extend(AresConfig, {
         }
       }, 5000);
     },
-
+      
     socketUrl() {
       let protocol = this.httpsEnabled ? 'wss' : 'ws';
       return `${protocol}://${this.mushHost}:${this.websocketPort}/websocket`;
     },
-
+    
     isSocketReady() {
       return this.socket && this.socket.readyState == WebSocket.OPEN ? true : false;
     },
-
+    
     checkSession(charId) {
         if (!this.isSocketReady() || (this.charId != charId)) {
             this.sessionStarted(charId);
-        }
+        }        
     },
-
+    
     ping() {
-
+      
     },
-
+    
     isWindowFocused() {
       return document.hasFocus();
     },
-
+    
     highlightFavicon() {
       if (!this.isWindowFocused()) {
         this.favicon.changeFavicon(true);
       }
     },
-
+    
     // Regular alert notification
     notify(msg) {
-
+      
       var doc = new DOMParser().parseFromString(msg, 'text/html');
       var cleanMsg =  doc.body.textContent || "";
 
         if (this.browserNotification && this.get('browserNotification.permission') === "granted") {
             try {
-              new Notification(`Activity in ${this.mushName}`,
+              new Notification(`Activity in ${this.mushName}`, 
                 {
                   icon: '/game/uploads/theme_images/notification.png',
                   badge: '/game/uploads/theme_images/notification.png',
@@ -71,18 +71,18 @@ export default Service.extend(AresConfig, {
                   tag: this.mushName,
                   renotify: true
                 }
-               );
+               ); 
             }
             catch(error) {
                 // Do nothing.  Just safeguard against missing browser notification.
             }
-        }
-
+        }         
+        
        if (!this.isWindowFocused()) {
             this.favicon.changeFavicon(true);
         }
     },
-
+    
     reconnect() {
       if (this.connectionRetries < 5) {
         console.log(`Reconnecting websocket (${this.connectionRetries + 1})`);
@@ -90,23 +90,23 @@ export default Service.extend(AresConfig, {
         this.set('connectionRetries', this.connectionRetries + 1);
       }
     },
-
+    
     sessionStarted(charId) {
-
+      
       if (this.aresconfig === null) {
         console.log("Unable to open websocket - aresconfig is missing.");
         return;
       }
-
+      
         let socket = this.socket;
         this.set('charId', charId);
-
+        
         if (this.isSocketReady()) {
           console.log("Keeping socket.");
           this.handleConnect();
           return;
         }
-
+                
         try
         {
             socket = new WebSocket(this.socketUrl());
@@ -127,7 +127,7 @@ export default Service.extend(AresConfig, {
               self.handleSocketClosed(self);
             };
             this.set('browserNotification', window.Notification || window.mozNotification || window.webkitNotification);
-
+        
             if (this.browserNotification) {
                 this.browserNotification.requestPermission();
             }
@@ -137,19 +137,19 @@ export default Service.extend(AresConfig, {
             console.log(`Error loading websocket: ${error}`);
         }
     },
-
+    
     sessionStopped() {
         this.set('charId', null);
         this.sendCharId();
         /*
-
+        
         let socket = this.get('socket');
             if (socket) {
             socket.close();
             this.set('socket', null);
         }*/
     },
-
+    
     sendCharId() {
       let cmd = {
         'type': 'identify',
@@ -159,49 +159,49 @@ export default Service.extend(AresConfig, {
       try {
         let socket = this.socket;
         if (socket) {
-          socket.send(json);
+          socket.send(json); 
         }
       }
       catch(err) {
         // Socket closed already.
       }
-
+       
     },
-
+    
     removeCallback( notification ) {
       delete this.callbacks[notification];
     },
-
+    
     setupCallback( notification, method ) {
       this.callbacks[notification] = method;
     },
-
+    
     handleSocketClosed(self) {
       let message = 'Your connection to the game has been lost!  You will no longer see updates.  Try reloading the page.  If the problem persists, the game may be down.';
       self.notify(message, 10, 'error');
       self.set('connected', false);
       self.set('socket', null);
-      setTimeout(() => self.reconnect(), 5000);
+      setTimeout(() => self.reconnect(), 5000);      
     },
-
+    
     handleConnect() {
       this.set('connected', true);
       this.set('lastActivity', new Date());
-      this.set('connectionRetries', 0);
+      this.set('connectionRetries', 0);      
       this.sendCharId();
     },
-
+    
     updateNotificationBadge(count) {
       var notificationBadge = document.getElementById('notificationBadge');
       if (notificationBadge) {
         notificationBadge.textContent = (`${count}` === '0' ? '' : count);
       }
     },
-
+    
     handleMessage(self, evt) {
-
+        
         var data;
-
+        
         try
         {
            data = JSON.parse(evt.data);
@@ -210,38 +210,38 @@ export default Service.extend(AresConfig, {
         {
             data = null;
         }
-
+        
         if (!data) {
             return;
         }
-
+        
         var recipient = data.args.character;
         var notification_type = data.args.notification_type;
-
+        
         this.set('lastActivity', new Date());
-
+        
         if (!recipient || recipient === self.get('charId')) {
             var notify = true;
-
+            
             if (this.callbacks[notification_type]) {
               this.callbacks[notification_type](notification_type, data.args.message, data.args.timestamp);
               notify = false;
             }
-
+            
             if (data.args.is_data) {
               notify = false;
             }
-
+              
             if (notification_type == "notification_update") {
               this.updateNotificationBadge(data.args.message);
               notify = false;
             }
-
+            
             if (notify) {
                 var formatted_msg = ansi_up.ansi_to_html(data.args.message, { use_classes: true });
               this.notify(formatted_msg);
             }
         }
-
+        
     }
 });
