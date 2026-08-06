@@ -48,3 +48,5 @@ codemods.log
 MODULE_REPORT.md
 .vscode/sftp.json
 ares-webportal.code-workspace
+.github/copilot-instructions.md
+AGENTS.md

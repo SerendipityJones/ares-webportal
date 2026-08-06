@@ -70,17 +70,17 @@ export default Component.extend({
   }),
 
   @action
-  spellLearned() {
-      this.reloadChar();
-  },
-
-  @action
   changeSpellList(newAspect) {
     let fullList = this.get('learn.learnable');
     let catList = fullList[newAspect];
     this.set('aspect', newAspect);
     this.set('availableSpells', this.get('learn.learnable')[newAspect]);
     this.set('spell', this.get('availableSpells')[0]);
+  },
+
+  @action
+  setSpell(newSpell) {
+    this.set('spell', newSpell);
   },
 
   @action
@@ -99,7 +99,9 @@ export default Component.extend({
       }
     });
     this.flashMessages.success('Your ' + category + ' spells now include ' + spell + '.');
-    this.spellLearned();
+    if (typeof this.onReloadChar === 'function') {
+      this.onReloadChar();
+    }
   }
 
 });

@@ -9,7 +9,7 @@
       <PowerSelect id="currentAspect" @selected={{this.aspect}} @options={{this.learn.aspects}} @value={{this.currentAspect}} @onChange={{this.changeSpellList}} as |currentAspect|>
         {{currentAspect}}
       </PowerSelect>
-      <PowerSelect id="currentSpell" @selected={{this.spell}} @options={{this.availableSpells}} @value={{this.currentSpell}} @onChange={{on 'click' (fn this.spell) }} as |currentSpell|>
+      <PowerSelect id="currentSpell" @selected={{this.spell}} @options={{this.availableSpells}} @value={{this.currentSpell}} @onChange={{this.setSpell}} as |currentSpell|>
         {{currentSpell}}
       </PowerSelect>
       <button {{on 'click' (fn this.addSpell this.spell)}} class="btn btn-primary">Learn</button>

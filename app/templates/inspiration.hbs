@@ -9,7 +9,7 @@
   <p><AnsiFormat @text={{this.model.newAction}} /></p>
   <p>An involved item or trinket could be <AnsiFormat @text={{~this.model.newThing~}} /> Consider using a theme of <AnsiFormat @text={{this.model.newCue}} /></p>
 </blockquote>
-<BsButton @type="primary" class="inspiration" {{this.newInspiration}}>
+<BsButton @type="primary" class="inspiration" {{on "click" this.newInspiration}}>
   Inspire Me Again!
 </BsButton>
 
@@ -24,8 +24,5 @@
   <li>
     <a href="https://forum.rpg.net/index.php?threads/101-random-encounters-modern-city-in-the-western-world.377962/" target=new>Modern City In the Western World</a>
     <br>Random encounters in a modern city environment.</li>
-  <li>
-    <a href="https://www.artbreeder.com/" target=new>Art Breeder</a>
-	<br>Create strange landscapes and their inhabitants with AI.</li>
 </ul>
 {{outlet}}

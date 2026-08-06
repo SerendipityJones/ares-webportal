@@ -1,37 +1,28 @@
 <div id="rpprefs" class="tab-pane fade show">
-  {{#each-in this.model.char.pref_list as |cat data|}}
+{{#each-in this.model.char.pref_list as |cat data|}}
   <table>
     <tr><td colspan="2"><h2>{{cat}}</h2></td></tr>
+
     {{#each-in data as |key desc|}}
       <tr>
         <td>{{desc}}</td>
         <td class="pref-dots">
           <label for="{{key}}-red">
-          {{#if (eq (get this.model.char.rp_prefs (concat cat "." key)) "1")}}
-            <input type="radio" value="1" checked id="{{key}}-red" name={{key}} class="red" />
-          {{else}}
-            <input type="radio" value="1" id="{{key}}-red" name={{key}} class="red" onclick={{(fn this.updatePref cat key "1")}}/>
-          {{/if}}
+            <input type="radio" value="1" id="{{key}}-red" name={{key}} class="red" checked={{eq (get this.model.char.rp_prefs (concat cat "." key)) "1"}} {{on "click" (fn this.updatePref cat key "1")}}/>
           </label>
+
           <label for="{{key}}-yellow">
-          {{#if (eq (get this.model.char.rp_prefs (concat cat "." key)) "2")}}
-             <input type="radio" value="2" checked id="{{key}}-yellow" name={{key}} class="yellow" />
-          {{else}}
-             <input type="radio" value="2" id="{{key}}-yellow" name={{key}} class="yellow" onclick={{(fn this.updatePref cat key "2")}} />
-          {{/if}}
+            <input type="radio" value="2" id="{{key}}-yellow" name={{key}} class="yellow" checked={{eq (get this.model.char.rp_prefs (concat cat "." key)) "2"}} {{on "click" (fn this.updatePref cat key "2")}} />
           </label>
+
           <label for="{{key}}-green">
-          {{#if (eq (get this.model.char.rp_prefs (concat cat "." key)) "3")}}
-            <input type="radio" value="3" checked id="{{key}}-green" name={{key}} class="green" />
-          {{else}}
-            <input type="radio" value="3" id="{{key}}-green" name={{key}} class="green" onclick={{(fn this.updatePref cat key "3")}} />
-          {{/if}}
+            <input type="radio" value="3" id="{{key}}-green" name={{key}} class="green" checked={{eq (get this.model.char.rp_prefs (concat cat "." key)) "3"}} {{on "click" (fn this.updatePref cat key "3")}} />
           </label>
         </td>
       </tr>
     {{/each-in}}
   </table>
-  {{/each-in}}
+{{/each-in}}
   <h2>Notes:</h2>
     <MarkdownEditor @text={{this.model.char.rp_notes}} />
 </div>

@@ -18,11 +18,11 @@
 </div>
 
 <div class="fs3-luck">
-  <b>Luck Points:</b> {{this.char.fs3.luck_points}}
+  <b>Luck Points:</b> {{this.char.fs3.luck_points}} {{#if (and (gte this.char.fs3.luck_points 5) this.char.fs3.xp)}}<i class="fad fa-share-square" {{on 'click' (fn this.confirmLuck true)}}></i>{{/if}}
 </div>
 
 {{#if this.luckConfirm}}
-<BsModalSimple @title="Convert Luck?" @closeTitle="No" @submitTitle="Yes" @size={{null}} @fade={{true}} @position="center" @open={{this.luckConfirm}} @onSubmit={{this.tradeLuck}} @onHide={{(fn this.luckConfirm false)}}>
+<BsModalSimple @title="Convert Luck?" @closeTitle="No" @submitTitle="Yes" @size={{null}} @fade={{true}} @position="center" @open={{this.luckConfirm}} @onSubmit={{this.tradeLuck}} @onHide={{(fn this.confirmLuck false)}}>
    Convert 5 Luck points into 1 XP?
    <FlashMessages />
 </BsModalSimple>

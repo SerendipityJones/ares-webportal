@@ -7,11 +7,6 @@ export default Component.extend({
   flashMessages: service(),
 
   @action
-  luckTraded() {
-      this.onReloadChar();
-  },
-
-  @action
   tradeLuck() {
     let api = this.gameApi;
     api.requestOne('luckConversion', {
@@ -22,13 +17,13 @@ export default Component.extend({
         return;
       } else if (response.success) {
         this.flashMessages.success(response.success);
-        this.luckTraded();
+        this.onReloadChar()
       }
     });
   },
 
   @action
-  luckConfirm(value) {
+  confirmLuck(value) {
     this.set('luckConfirm', value);
   },
 

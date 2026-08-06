@@ -1,6 +1,6 @@
-<i class="fad fa-edit" {{on 'click' (fn this.noteSetter true)}}></i>
+<i class="fad fa-edit" {{on "click" (fn this.showNoteSetter true)}}></i>
 {{#if this.noteSetter}}
-<BsModalSimple @title="Set Spell Note: {{this.spell}}" @closeTitle="Cancel" @submitTitle="Set" @size={{null}} @fade={{true}} @position="center" @open={{this.noteSetter}} @onSubmit={{this.setNote}} @onHide={{(fn this.noteSetter false)}}>
+<BsModalSimple @title="Set Spell Note: {{this.spell}}" @closeTitle="Cancel" @submitTitle="Set" @size={{null}} @fade={{true}} @position="center" @open={{this.noteSetter}} @onSubmit={{this.setNote}} @onHide={{(fn this.showNoteSetter false)}}>
    <b>New Note:</b> <Input @type="text" size={{25}} id="newNote" @enter={{this.setNote}} @value={{this.newNote}} placeholder={{this.currentNote}}/>
    <FlashMessages />
 </BsModalSimple>

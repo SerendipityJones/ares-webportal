@@ -5,6 +5,7 @@ import EmberObject, { action, computed } from '@ember/object';
 export default Component.extend({
   gameApi: service(),
   flashMessages: service(),
+  noteSetter: false,
   currentNote: computed( 'spellnotes', 'spells', function() {
     var theNote = this.get('spellnotes')[this.spell];
     if (theNote) {
@@ -14,11 +15,6 @@ export default Component.extend({
     }
     return theNote;
   }),
-
-  @action
-  noteSet() {
-      this.reloadChar();
-  },
 
   @action
   setNote(spell) {
@@ -37,9 +33,16 @@ export default Component.extend({
         return;
       } else if (response.success) {
         this.flashMessages.success(response.success);
-        this.noteSet();
+        if (typeof this.onReloadChar === 'function') {
+          this.onReloadChar();
+        }
       }
     });
-  }
+  },
+
+  @action
+  showNoteSetter(value) {
+    this.set('noteSetter', value);
+  },
 
 });

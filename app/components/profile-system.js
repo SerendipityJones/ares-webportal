@@ -23,8 +23,4 @@ export default Component.extend({
     return this.get('game.extra_plugins').some((e) => e == 'prefs');
   }),
 
-  @action
-    reloadChar() {
-      this.onReloadChar();
-    },
 });

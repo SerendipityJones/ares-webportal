@@ -46,14 +46,4 @@ export default Component.extend({
     }
   },
 
-  @action
-  reloadChar() {
-    this.reloadChar();
-  },
-
-  @action
-  setNote() {
-    console.log('Woo!');
-  }
-
 });

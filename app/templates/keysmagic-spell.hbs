@@ -52,8 +52,9 @@
   {{/if}}
 </div>
 <AnsiFormat @text={{this.model.spell.desc.full}} />
-<div class="image-container center">
-  <img src="/game/uploads/spellpix/{{this.model.pic}}">
+<div class="moodpic center">
+<img src="/game/uploads/moodpix/{{this.model.pic.source}}" alt="{{this.model.pic.description}}" />
+<div class="caption"> {{this.model.pic.caption}}</div>
 </div>
 
 <div class="action-buttons">
